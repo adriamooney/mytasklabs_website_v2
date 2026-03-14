@@ -57,7 +57,7 @@ export function Differentiation() {
               <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center mb-6">
                 <h4 className="text-lg font-semibold text-gray-700">Traditional Approach</h4>
               </div>
-              {comparisons.map((item, index) => (
+              {comparisons.filter((_, i) => i !== 0).map((item, index) => (
                 <div 
                   key={index}
                   className="group bg-white border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:border-gray-300 hover:shadow-md"
@@ -79,7 +79,7 @@ export function Differentiation() {
               <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 border-2 border-indigo-600 rounded-lg p-4 text-center mb-6 shadow-lg">
                 <h4 className="text-lg font-semibold text-white">My Task Labs Way</h4>
               </div>
-              {comparisons.map((item, index) => (
+              {comparisons.filter((_, i) => i !== comparisons.length - 1).map((item, index) => (
                 <div 
                   key={index}
                   className="group bg-white border-2 border-indigo-200 rounded-lg p-4 transition-all duration-300 hover:border-indigo-400 hover:shadow-lg hover:-translate-y-1 hover:bg-indigo-50/30"

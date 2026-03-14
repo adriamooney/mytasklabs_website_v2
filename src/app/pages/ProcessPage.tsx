@@ -8,6 +8,7 @@ import { InnerPageCTA } from '../components/InnerPageCTA';
 
 const steps = [
   {
+    id: 'identify',
     icon: IdentifyIcon,
     number: 1,
     title: 'Identify Bottlenecks',
@@ -20,6 +21,7 @@ const steps = [
     ],
   },
   {
+    id: 'design',
     icon: DesignIcon,
     number: 2,
     title: 'Design Targeted Automation',
@@ -32,6 +34,7 @@ const steps = [
     ],
   },
   {
+    id: 'implement',
     icon: ImplementIcon,
     number: 3,
     title: 'Implement & Integrate',
@@ -44,6 +47,7 @@ const steps = [
     ],
   },
   {
+    id: 'optimize',
     icon: OptimizeIcon,
     number: 4,
     title: 'Optimize & Scale',
@@ -94,6 +98,7 @@ export function ProcessPage() {
               return (
                 <div
                   key={step.title}
+                  id={step.id}
                   className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
                 >
                   <div className={index % 2 === 1 ? 'md:order-2' : ''}>

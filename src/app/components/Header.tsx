@@ -1,6 +1,15 @@
 import { Link, useLocation } from 'react-router';
 import { Button } from './ui/button';
 
+const HOME_NAV_ITEMS = [
+  { label: 'Services', hash: 'services' },
+  { label: 'Process', hash: 'process' },
+  { label: 'Industries', hash: 'industries' },
+  { label: 'Team', hash: 'team' },
+] as const;
+
+const navLinkClass = 'text-gray-600 hover:text-gray-900';
+
 export function Header() {
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -13,15 +22,14 @@ export function Header() {
           <span className="text-xl font-semibold text-gray-900">My Task Labs</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          {isHome && (
-            <>
-              <a href="#services" className="text-gray-600 hover:text-gray-900">Services</a>
-              <a href="#process" className="text-gray-600 hover:text-gray-900">Process</a>
-              <a href="#industries" className="text-gray-600 hover:text-gray-900">Industries</a>
-              <a href="#team" className="text-gray-600 hover:text-gray-900">Team</a>
-            </>
+          {HOME_NAV_ITEMS.map(({ label, hash }) =>
+            isHome ? (
+              <a key={hash} href={`#${hash}`} className={navLinkClass}>{label}</a>
+            ) : (
+              <Link key={hash} to={`/#${hash}`} className={navLinkClass}>{label}</Link>
+            )
           )}
-          <Link to="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
+          <Link to="/contact" className={navLinkClass}>Contact</Link>
           <Link to="/process"><Button size="sm">Get Started</Button></Link>
         </nav>
       </div>

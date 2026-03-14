@@ -1,4 +1,4 @@
-import { Target, Lightbulb, Cog, Rocket } from 'lucide-react';
+import { Link } from 'react-router';
 import { ProcessCard } from './ProcessCard';
 import { IdentifyIcon } from './icons/IdentifyIcon';
 import { DesignIcon } from './icons/DesignIcon';
@@ -10,21 +10,25 @@ const steps = [
     icon: IdentifyIcon,
     title: 'Identify Bottlenecks',
     description: 'We analyze your current workflows to find areas costing you time and money.',
+    href: '/process#identify',
   },
   {
     icon: DesignIcon,
     title: 'Design Targeted Automation',
     description: 'Custom solutions built specifically for your unique business challenges.',
+    href: '/process#design',
   },
   {
     icon: ImplementIcon,
     title: 'Implement & Integrate',
     description: 'Seamless deployment that works with your existing tools and systems.',
+    href: '/process#implement',
   },
   {
     icon: OptimizeIcon,
     title: 'Optimize & Scale',
     description: 'Continuous refinement to maximize efficiency as your business grows.',
+    href: '/process#optimize',
   },
 ];
 
@@ -40,7 +44,7 @@ export function Process() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <ProcessCard key={step.title} number={index + 1} {...step} />
+            <ProcessCard key={step.title} number={index + 1} href={step.href} {...step} />
           ))}
         </div>
       </div>
