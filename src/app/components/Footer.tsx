@@ -14,7 +14,7 @@ export function Footer() {
               Intelligent automation solutions for modern businesses.
             </p>
             <p className="text-xs mt-3">Based in Portland, OR<br />contact@mytasklabs.com
-<br />503.660.3022<br /></p>
+<br />503.451.0341<br /></p>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Services</h4>
