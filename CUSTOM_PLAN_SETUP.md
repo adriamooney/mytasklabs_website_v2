@@ -46,6 +46,7 @@ Add these to your Vercel project (Settings → Environment Variables) and to `.e
 | `EMAILJS_QUIZ_SERVICE_ID` | EmailJS service ID for plan delivery emails |
 | `EMAILJS_QUIZ_TEMPLATE_ID` | EmailJS template ID for the plan email |
 | `EMAILJS_QUIZ_PUBLIC_KEY` | EmailJS public key (user ID) |
+| `EMAILJS_QUIZ_PRIVATE_KEY` | EmailJS private key (access token). Required for strict mode / server-side. |
 
 If these are not set, the plan will still be shown on the `/your-plan` page; the email will simply be skipped.
 
@@ -66,12 +67,13 @@ The item name will be set to `Custom Plan - {email}` for easy identification. Co
 
 ## EmailJS — Enable Server-Side Access
 
-**Important:** The plan email is sent from the server (Vercel). EmailJS blocks server-side requests by default.
+**Important:** The plan email is sent from the server (Vercel). EmailJS strict mode requires a private key.
 
 1. Go to https://dashboard.emailjs.com/admin/account/security
 2. Enable **"Allow EmailJS API for non-browser applications"**
+3. Get your **Private Key** (access token) from https://dashboard.emailjs.com/admin/account — add it as `EMAILJS_QUIZ_PRIVATE_KEY` in your env vars
 
-Without this, you'll get a `403 API access from non-browser environments is currently disabled` error.
+Without the private key in strict mode, you'll get a `403 API access in strict mode, but no Private Key was provided` error.
 
 ---
 
