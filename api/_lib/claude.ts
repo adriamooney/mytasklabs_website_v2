@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-const MODEL = 'claude-3-5-haiku-20241022';
+const MODEL = 'claude-haiku-4-5';
 
 export async function generateAiInsert(prompt: string, apiKey: string): Promise<string> {
   const anthropic = new Anthropic({ apiKey });
