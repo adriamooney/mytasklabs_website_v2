@@ -89,8 +89,8 @@ async function createMondayItem(
   }
 }
 
-/** Generate HTML for plan email — full document so clients render as HTML */
-function planToHtml(planData: {
+/** Generate plain-text plan for email (avoids Gmail/EmailJS HTML rendering issues) */
+function planToText(planData: {
   tagline: string;
   headline: string;
   subline: string;
@@ -99,48 +99,34 @@ function planToHtml(planData: {
   sixtyDayTarget: string;
 }): string {
   const { tagline, headline, subline, scores, steps, sixtyDayTarget } = planData;
-  const scoreRows = `
-    <tr><td><strong>Respond</strong></td><td>${scores.respond}/10</td></tr>
-    <tr><td><strong>Follow Up</strong></td><td>${scores.followUp}/10</td></tr>
-    <tr><td><strong>Show Up</strong></td><td>${scores.showUp}/10</td></tr>
-    <tr><td><strong>Ask</strong></td><td>${scores.ask}/10</td></tr>
-    <tr><td><strong>Total</strong></td><td>${scores.total}/40</td></tr>
-  `;
+  const scoreBlock = [
+    `Respond: ${scores.respond}/10`,
+    `Follow Up: ${scores.followUp}/10`,
+    `Show Up: ${scores.showUp}/10`,
+    `Ask: ${scores.ask}/10`,
+    `Total: ${scores.total}/40`,
+  ].join('\n');
   const stepBlocks = steps
     .map(
-      (s) => `
-    <h3 style="margin:16px 0 4px">${s.title}</h3>
-    <p style="margin:0 0 8px;color:#6b7280;font-size:14px">${s.subtitle}</p>
-    <p style="margin:0 0 8px">${s.fixedCopy}</p>
-    <p style="margin:0 0 16px;font-style:italic">${s.aiInsert}</p>
-  `
+      (s) =>
+        `${s.title}\n${s.subtitle}\n\n${s.fixedCopy}\n\n"${s.aiInsert}"\n`
     )
-    .join('');
-  const body = `
-    <h1>${tagline}</h1>
-    <h2>${headline}</h2>
-    <p>${subline}</p>
-    <h3>Your Booked &amp; Busy Scores</h3>
-    <table border="1" cellpadding="8" style="border-collapse:collapse;margin-bottom:20px">
-      ${scoreRows}
-    </table>
-    <h3>Your Plan</h3>
-    ${stepBlocks}
-    <h3>60-Day Target</h3>
-    <p>${sixtyDayTarget}</p>
-    <p style="margin-top:24px">Ready to put this in place? <a href="https://zcal.co/adriamooney/15min">Get started with My Task Labs</a></p>
-  `;
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${tagline}</title>
-</head>
-<body style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;max-width:600px;margin:0 auto;padding:20px">
-${body}
-</body>
-</html>`;
+    .join('\n---\n\n');
+  return `${tagline}
+${headline}
+
+${subline}
+
+YOUR BOOKED & BUSY SCORES
+${scoreBlock}
+
+YOUR PLAN
+
+${stepBlocks}
+60-DAY TARGET
+${sixtyDayTarget}
+
+Ready to put this in place? Schedule a call: https://zcal.co/adriamooney/15min`;
 }
 
 /** Send plan email via EmailJS server-side */
