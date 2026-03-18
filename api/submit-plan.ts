@@ -146,7 +146,7 @@ async function sendPlanEmail(
     const { send } = await import('@emailjs/nodejs');
     await send(serviceId, templateId, {
       to_email: email,
-      plan_content: planToHtml(planData),
+      plan_content: planToText(planData),
       plan_type: templateType,
     }, {
       publicKey,
