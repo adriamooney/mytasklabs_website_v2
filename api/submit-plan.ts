@@ -89,7 +89,7 @@ async function createMondayItem(
   }
 }
 
-/** Generate simple HTML for plan email */
+/** Generate HTML for plan email — full document so clients render as HTML */
 function planToHtml(planData: {
   tagline: string;
   headline: string;
@@ -116,7 +116,7 @@ function planToHtml(planData: {
   `
     )
     .join('');
-  return `
+  const body = `
     <h1>${tagline}</h1>
     <h2>${headline}</h2>
     <p>${subline}</p>
@@ -130,6 +130,17 @@ function planToHtml(planData: {
     <p>${sixtyDayTarget}</p>
     <p style="margin-top:24px">Ready to put this in place? <a href="https://zcal.co/adriamooney/15min">Get started with My Task Labs</a></p>
   `;
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${tagline}</title>
+</head>
+<body style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;max-width:600px;margin:0 auto;padding:20px">
+${body}
+</body>
+</html>`;
 }
 
 /** Send plan email via EmailJS server-side */

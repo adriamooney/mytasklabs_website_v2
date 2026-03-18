@@ -81,9 +81,14 @@ Without the private key in strict mode, you'll get a `403 API access in strict m
 
 To email the plan to users, create an EmailJS template with these variables:
 
-- `{{to_email}}` — recipient email
-- `{{plan_content}}` — JSON or HTML of the plan (you can format as needed)
-- `{{plan_type}}` — e.g. "Your Respond Plan", "Your Follow Up Plan"
+- `{{to_email}}` — recipient email (use in To field)
+- `{{{plan_content}}}` — **triple braces** so HTML renders; double braces `{{}}` will show raw tags
+- `{{plan_type}}` — e.g. "Your Respond Plan" (use in Subject)
+
+**For HTML to render correctly:**
+1. Use **triple braces** for plan_content: `{{{plan_content}}}`
+2. In the template editor, switch to **Code / HTML view** (not visual editor) and put `{{{plan_content}}}` as the body
+3. The content is sent as a full HTML document; avoid wrapping it in extra markup that could escape it
 
 Set `EMAILJS_QUIZ_SERVICE_ID`, `EMAILJS_QUIZ_TEMPLATE_ID`, and `EMAILJS_QUIZ_PUBLIC_KEY` in your env.
 
