@@ -57,10 +57,21 @@ Create a board (e.g. "Custom Plan Leads") with these columns:
 
 | Column Type | Title | Used for |
 |-------------|-------|----------|
-| Email | Email | Lead's email address |
-| Long text | Lead Data | JSON with quiz_answers, custom_plan, and scores |
+| Text | Email | Lead's email address |
+| Long text | Lead Data | Concise summary: plan type, scores, step titles, 60-day target |
 
 The item name will be set to `Custom Plan - {email}` for easy identification. Copy the column IDs from the API query above into your env vars.
+
+---
+
+## EmailJS — Enable Server-Side Access
+
+**Important:** The plan email is sent from the server (Vercel). EmailJS blocks server-side requests by default.
+
+1. Go to https://dashboard.emailjs.com/admin/account/security
+2. Enable **"Allow EmailJS API for non-browser applications"**
+
+Without this, you'll get a `403 API access from non-browser environments is currently disabled` error.
 
 ---
 
@@ -73,6 +84,8 @@ To email the plan to users, create an EmailJS template with these variables:
 - `{{plan_type}}` — e.g. "Your Respond Plan", "Your Follow Up Plan"
 
 Set `EMAILJS_QUIZ_SERVICE_ID`, `EMAILJS_QUIZ_TEMPLATE_ID`, and `EMAILJS_QUIZ_PUBLIC_KEY` in your env.
+
+**Enable server-side API access:** Plan emails are sent from your Vercel server (Node.js), not the browser. Go to [EmailJS Account Security](https://dashboard.emailjs.com/admin/account/security) and enable **"Allow EmailJS API for non-browser applications"**. Without this, you’ll get a 403 error.
 
 ---
 

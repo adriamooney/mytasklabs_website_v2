@@ -9,12 +9,28 @@ import {
 import { getTemplateConfig, getPrompt } from './_lib/templateConfig.js';
 import { generateAiInsert } from './_lib/claude.js';
 
+/** Build a concise "what we recommended" summary for Monday (under 2,000 chars) */
+function formatPlanSummary(planData: {
+  tagline: string;
+  scores: PlanScores;
+  steps: { title: string }[];
+  sixtyDayTarget: string;
+}): string {
+  const { tagline, scores, steps, sixtyDayTarget } = planData;
+  const scoresLine = `Respond: ${scores.respond} | Follow Up: ${scores.followUp} | Show Up: ${scores.showUp} | Ask: ${scores.ask} | Total: ${scores.total}/40`;
+  const stepList = steps.map((s, i) => `${i + 1}. ${s.title}`).join('\n');
+  return `Plan: ${tagline}\n\nScores: ${scoresLine}\n\nSteps recommended:\n${stepList}\n\n60-day target: ${sixtyDayTarget}`;
+}
+
 /** Create Monday.com board item */
 async function createMondayItem(
   email: string,
-  answers: Record<string, string>,
-  planContent: string,
-  scores: PlanScores
+  planData: {
+    tagline: string;
+    scores: PlanScores;
+    steps: { title: string }[];
+    sixtyDayTarget: string;
+  }
 ): Promise<void> {
   const apiToken = process.env.MONDAY_API_TOKEN;
   const boardId = process.env.MONDAY_BOARD_ID;
@@ -25,25 +41,12 @@ async function createMondayItem(
   if (!apiToken || !boardId || !emailColumnId || !leadDataColumnId) return;
 
   try {
-    const leadData = JSON.stringify(
-      {
-        quiz_answers: answers,
-        custom_plan: planContent,
-        scores: {
-          respond: scores.respond,
-          follow_up: scores.followUp,
-          show_up: scores.showUp,
-          ask: scores.ask,
-          total: scores.total,
-        },
-      },
-      null,
-      2
-    );
+    const leadData = formatPlanSummary(planData);
 
-    const columnValues: Record<string, unknown> = {
-      [emailColumnId]: { email, text: email },
-      [leadDataColumnId]: { text: leadData },
+    // Text and long_text columns accept plain strings in create_item
+    const columnValues: Record<string, string> = {
+      [emailColumnId]: email,
+      [leadDataColumnId]: leadData,
     };
 
     const query = `
@@ -228,9 +231,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       sixtyDayTarget: config.sixtyDayTarget,
     };
 
-    const planContent = JSON.stringify(planData, null, 2);
-
-    await createMondayItem(email, answers, planContent, scores);
+    await createMondayItem(email, {
+      tagline: config.tagline,
+      scores,
+      steps,
+      sixtyDayTarget: config.sixtyDayTarget,
+    });
 
     await sendPlanEmail(
       email,
