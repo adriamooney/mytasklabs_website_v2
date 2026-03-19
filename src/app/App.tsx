@@ -1,5 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
 import { Layout } from './components/Layout';
+import { MetaPixelTracker } from './components/MetaPixelTracker';
 import { SalesLayout } from './components/sales/SalesLayout';
 import { HomePage } from './pages/HomePage';
 import { ContactPage } from './pages/ContactPage';
@@ -20,7 +21,12 @@ import { YourPlanPage } from './pages/YourPlanPage';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Outlet />,
+    element: (
+      <>
+        <MetaPixelTracker />
+        <Outlet />
+      </>
+    ),
     children: [
       {
         element: <Layout />,
