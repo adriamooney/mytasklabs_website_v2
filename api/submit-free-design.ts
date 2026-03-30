@@ -34,6 +34,18 @@ function formatLeadSummary(data: Required<FreeDesignBody>): string {
   ].join('\n');
 }
 
+/** Accepts full URLs or bare domains; empty string fails. */
+function looksLikeHttpUrl(value: string): boolean {
+  const t = value.trim();
+  if (!t) return false;
+  try {
+    const u = new URL(t.includes('://') ? t : `https://${t}`);
+    return u.protocol === 'http:' || u.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Resend requires `from` as `email@x.com` or `Name <email@x.com>`.
  * Trims, strips accidental wrapping quotes, fixes "Name email@x.com" (no angle brackets).
@@ -191,11 +203,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Missing or invalid required fields' });
   }
 
+  const hasWebsiteRaw = typeof body.hasWebsite === 'string' ? body.hasWebsite.trim() : '';
+  const websiteUrl = typeof body.websiteUrl === 'string' ? body.websiteUrl.trim() : '';
+  const socialUrl = typeof body.socialUrl === 'string' ? body.socialUrl.trim() : '';
+
+  if (hasWebsiteRaw !== 'yes' && hasWebsiteRaw !== 'no') {
+    return res.status(400).json({ error: 'Please indicate whether you have a website' });
+  }
+  if (hasWebsiteRaw === 'yes' && !looksLikeHttpUrl(websiteUrl)) {
+    return res.status(400).json({ error: 'Please enter a valid website URL' });
+  }
+  if (hasWebsiteRaw === 'no' && !looksLikeHttpUrl(socialUrl)) {
+    return res.status(400).json({ error: 'Please enter a link to your Facebook page, Google listing, or other profile' });
+  }
+
   const data: Required<FreeDesignBody> = {
     businessName,
-    hasWebsite: typeof body.hasWebsite === 'string' ? body.hasWebsite : 'not specified',
-    websiteUrl: typeof body.websiteUrl === 'string' ? body.websiteUrl.trim() : '',
-    socialUrl: typeof body.socialUrl === 'string' ? body.socialUrl.trim() : '',
+    hasWebsite: hasWebsiteRaw,
+    websiteUrl,
+    socialUrl,
     competitors: typeof body.competitors === 'string' ? body.competitors.trim() : '',
     designStyles: typeof body.designStyles === 'string' ? body.designStyles.trim() : '',
     additionalNotes: typeof body.additionalNotes === 'string' ? body.additionalNotes.trim() : '',

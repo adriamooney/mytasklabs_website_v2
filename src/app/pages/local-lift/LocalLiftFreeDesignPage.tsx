@@ -20,6 +20,18 @@ function validateEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
+/** Matches server: full URL or bare domain (https:// prepended when parsing). */
+function looksLikeHttpUrl(value: string): boolean {
+  const t = value.trim();
+  if (!t) return false;
+  try {
+    const u = new URL(t.includes('://') ? t : `https://${t}`);
+    return u.protocol === 'http:' || u.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 export function LocalLiftFreeDesignPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [thankYou, setThankYou] = useState(false);
@@ -64,7 +76,31 @@ export function LocalLiftFreeDesignPage() {
       });
       return ok;
     }
-    if (step === 2) return true;
+    if (step === 2) {
+      const hwOk = hasWebsite === 'yes' || hasWebsite === 'no';
+      const websiteOk = hasWebsite !== 'yes' || looksLikeHttpUrl(websiteUrl);
+      const socialOk = hasWebsite !== 'no' || looksLikeHttpUrl(socialUrl);
+      const ok = hwOk && websiteOk && socialOk;
+      setErrors((prev) => {
+        const next = { ...prev };
+        if (!hwOk) next.hasWebsite = true;
+        else delete next.hasWebsite;
+        if (hasWebsite === 'yes') {
+          if (!websiteOk) next.websiteUrl = true;
+          else delete next.websiteUrl;
+        } else {
+          delete next.websiteUrl;
+        }
+        if (hasWebsite === 'no') {
+          if (!socialOk) next.socialUrl = true;
+          else delete next.socialUrl;
+        } else {
+          delete next.socialUrl;
+        }
+        return next;
+      });
+      return ok;
+    }
     if (step === 3) {
       const fnOk = firstName.trim().length > 0;
       const lnOk = lastName.trim().length > 0;
@@ -112,6 +148,11 @@ export function LocalLiftFreeDesignPage() {
   });
 
   const submitForm = async () => {
+    if (!validateStep(2)) {
+      setCurrentStep(2);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     if (!validateStep(3)) return;
     setSubmitError('');
     setIsSubmitting(true);
@@ -300,7 +341,10 @@ export function LocalLiftFreeDesignPage() {
                         id="has-yes"
                         value="yes"
                         checked={hasWebsite === 'yes'}
-                        onChange={() => setHasWebsite('yes')}
+                        onChange={() => {
+                          setHasWebsite('yes');
+                          clearError('hasWebsite');
+                        }}
                       />
                       <label className="radio-label" htmlFor="has-yes">
                         ✓ &nbsp; Yes, I have one
@@ -313,40 +357,61 @@ export function LocalLiftFreeDesignPage() {
                         id="has-no"
                         value="no"
                         checked={hasWebsite === 'no'}
-                        onChange={() => setHasWebsite('no')}
+                        onChange={() => {
+                          setHasWebsite('no');
+                          clearError('hasWebsite');
+                        }}
                       />
                       <label className="radio-label" htmlFor="has-no">
                         ✕ &nbsp; Not yet
                       </label>
                     </div>
                   </div>
+                  <div className={`error-msg ${errors.hasWebsite ? 'visible' : ''}`} id="err-has-website">
+                    Please choose whether you have a website.
+                  </div>
 
                   <div className={`presence-field ${hasWebsite === 'yes' ? 'visible' : ''}`} id="field-website">
-                    <label htmlFor="website-url">Your website URL</label>
+                    <label htmlFor="website-url">Your website URL *</label>
                     <input
-                      type="url"
+                      type="text"
                       id="website-url"
-                      placeholder="https://yoursite.com"
+                      placeholder="https://yoursite.com or yoursite.com"
+                      autoComplete="url"
                       value={websiteUrl}
-                      onChange={(e) => setWebsiteUrl(e.target.value)}
+                      onChange={(e) => {
+                        setWebsiteUrl(e.target.value);
+                        clearError('websiteUrl');
+                      }}
+                      className={errors.websiteUrl ? 'error' : undefined}
+                      aria-invalid={errors.websiteUrl ? true : undefined}
                     />
+                    <div className={`error-msg ${errors.websiteUrl ? 'visible' : ''}`} id="err-website-url">
+                      Please enter a valid website URL.
+                    </div>
                     <div className="presence-hint">
                       We&apos;ll review it to understand your current branding and improve on it.
                     </div>
                   </div>
 
                   <div className={`presence-field ${hasWebsite === 'no' ? 'visible' : ''}`} id="field-social">
-                    <label htmlFor="social-url">
-                      Facebook page, Google listing, or other profile{' '}
-                      <span className="optional">(optional)</span>
-                    </label>
+                    <label htmlFor="social-url">Facebook page, Google listing, or other profile *</label>
                     <input
-                      type="url"
+                      type="text"
                       id="social-url"
-                      placeholder="https://facebook.com/yourbusiness"
+                      placeholder="https://facebook.com/yourbusiness or maps.google.com/..."
+                      autoComplete="url"
                       value={socialUrl}
-                      onChange={(e) => setSocialUrl(e.target.value)}
+                      onChange={(e) => {
+                        setSocialUrl(e.target.value);
+                        clearError('socialUrl');
+                      }}
+                      className={errors.socialUrl ? 'error' : undefined}
+                      aria-invalid={errors.socialUrl ? true : undefined}
                     />
+                    <div className={`error-msg ${errors.socialUrl ? 'visible' : ''}`} id="err-social-url">
+                      Please enter a link to your Facebook page, Google listing, or other profile.
+                    </div>
                     <div className="presence-hint">
                       No website? No problem — a Facebook page or Google listing gives us your logo, photos, and
                       brand feel to work with.
