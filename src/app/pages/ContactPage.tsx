@@ -100,7 +100,6 @@ export function ContactPage() {
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                required
                 placeholder="(555) 123-4567"
                 className="mt-2"
               />
@@ -148,10 +147,9 @@ export function ContactPage() {
 
             <Button
               type="submit"
-              variant="secondary"
               size="lg"
               disabled={status === 'sending'}
-              className="w-full sm:w-auto cursor-pointer hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+              className="w-full sm:w-auto cursor-pointer bg-indigo-600 text-white hover:bg-indigo-700 hover:text-white hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
             >
               {status === 'sending' ? 'Sending...' : 'Send Message'}
             </Button>

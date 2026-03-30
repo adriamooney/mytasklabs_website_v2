@@ -74,6 +74,9 @@ export function PrivacyPage() {
           <h2 className="text-xl font-semibold text-gray-900 mt-10 mb-4">5. Sharing Your Information</h2>
           <p className="text-gray-700 mb-4">We do not sell, rent, or trade your personal information.</p>
           <p className="text-gray-700 mb-4">Specifically, mobile information will not be shared with third parties or affiliates for marketing or promotional purposes.</p>
+          <p className="text-gray-700 mb-4">
+            We will not share your opt-in to an SMS campaign with any third party for purposes unrelated to providing you with the services of that campaign.
+          </p>
           <p className="text-gray-700 mb-4">We may share your data only in the following circumstances:</p>
           <h3 className="text-lg font-medium text-gray-900 mt-6 mb-2">Service Providers</h3>
           <p className="text-gray-700 mb-2">With trusted third-party vendors who assist in operating our business, such as:</p>
