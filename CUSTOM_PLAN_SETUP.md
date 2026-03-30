@@ -135,7 +135,7 @@ The form POSTs to **`/api/submit-free-design`** (same Vercel deployment pattern 
 | `MONDAY_COLUMN_EMAIL` | Monday | Column ID for the submitter’s email |
 | `MONDAY_COLUMN_LEAD_DATA` | Monday | Long text column for the full submission payload |
 | `RESEND_API_KEY` | Resend | API key from Resend dashboard |
-| `RESEND_FROM` | Resend | Sender, e.g. `LocalLift <notifications@yourdomain.com>` (must be allowed by Resend — verified domain or `onboarding@resend.dev` for testing) |
+| `RESEND_FROM` | Resend | Sender **exactly** as `you@domain.com` or `LocalLift <you@domain.com>` — no extra wrapping quotes in Vercel; if you use a display name, the address must be inside `<` `>` (must be allowed by Resend — verified domain or `onboarding@resend.dev` for testing) |
 | `LOCALIFT_NOTIFY_EMAIL` | Resend | Your inbox(es); comma-separated for multiple |
 
 If Monday vars are missing, the API still returns success but **skips** Monday. If Resend vars are missing, the notification email is **skipped**.

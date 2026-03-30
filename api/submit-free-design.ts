@@ -34,6 +34,34 @@ function formatLeadSummary(data: Required<FreeDesignBody>): string {
   ].join('\n');
 }
 
+/**
+ * Resend requires `from` as `email@x.com` or `Name <email@x.com>`.
+ * Trims, strips accidental wrapping quotes, fixes "Name email@x.com" (no angle brackets).
+ */
+function normalizeResendFrom(raw: string | undefined): string | null {
+  if (!raw) return null;
+  let s = raw.trim().replace(/\r?\n/g, '');
+  if (
+    (s.startsWith('"') && s.endsWith('"')) ||
+    (s.startsWith("'") && s.endsWith("'"))
+  ) {
+    s = s.slice(1, -1).trim();
+  }
+  if (!s) return null;
+
+  const plainEmail = /^[^\s<>]+@[^\s<>]+\.[^\s<>]+$/;
+  if (plainEmail.test(s)) return s;
+
+  if (/<[^>\s]+@[^>\s]+>/.test(s)) return s;
+
+  const withSpace = s.match(/^(.+?)\s+([^\s<>]+@[^\s<>]+\.[^\s<>]+)$/);
+  if (withSpace) {
+    return `${withSpace[1].trim()} <${withSpace[2]}>`;
+  }
+
+  return s;
+}
+
 /** Same pattern as api/submit-plan.ts — creates one board item with email + long text. */
 async function createMondayItem(submitterEmail: string, itemName: string, leadData: string): Promise<void> {
   const apiToken = process.env.MONDAY_API_TOKEN;
@@ -97,9 +125,15 @@ async function sendAdminEmailViaResend(payload: {
   leadSummary: string;
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM;
+  const fromRaw = process.env.RESEND_FROM;
+  const from = normalizeResendFrom(fromRaw);
   const toRaw = process.env.LOCALIFT_NOTIFY_EMAIL;
 
+  if (fromRaw && !from) {
+    console.warn(
+      'LocalLift Resend: RESEND_FROM is invalid. Use `you@domain.com` or `Name <you@domain.com>` (no stray quotes or line breaks).',
+    );
+  }
   if (!apiKey || !from || !toRaw) {
     return;
   }
