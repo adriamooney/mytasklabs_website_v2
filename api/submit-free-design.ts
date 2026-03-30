@@ -1,4 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { normalizeResendFrom } from './_lib/resendFrom.js';
 
 type FreeDesignBody = {
   businessName?: string;
@@ -44,34 +45,6 @@ function looksLikeHttpUrl(value: string): boolean {
   } catch {
     return false;
   }
-}
-
-/**
- * Resend requires `from` as `email@x.com` or `Name <email@x.com>`.
- * Trims, strips accidental wrapping quotes, fixes "Name email@x.com" (no angle brackets).
- */
-function normalizeResendFrom(raw: string | undefined): string | null {
-  if (!raw) return null;
-  let s = raw.trim().replace(/\r?\n/g, '');
-  if (
-    (s.startsWith('"') && s.endsWith('"')) ||
-    (s.startsWith("'") && s.endsWith("'"))
-  ) {
-    s = s.slice(1, -1).trim();
-  }
-  if (!s) return null;
-
-  const plainEmail = /^[^\s<>]+@[^\s<>]+\.[^\s<>]+$/;
-  if (plainEmail.test(s)) return s;
-
-  if (/<[^>\s]+@[^>\s]+>/.test(s)) return s;
-
-  const withSpace = s.match(/^(.+?)\s+([^\s<>]+@[^\s<>]+\.[^\s<>]+)$/);
-  if (withSpace) {
-    return `${withSpace[1].trim()} <${withSpace[2]}>`;
-  }
-
-  return s;
 }
 
 /** Same pattern as api/submit-plan.ts — creates one board item with email + long text. */
@@ -130,7 +103,7 @@ async function createMondayItem(submitterEmail: string, itemName: string, leadDa
   }
 }
 
-/** Admin notification via Resend (quiz/contact still use EmailJS). */
+/** Admin notification via Resend (quiz plan delivery still uses EmailJS). */
 async function sendAdminEmailViaResend(payload: {
   businessName: string;
   submitterEmail: string;

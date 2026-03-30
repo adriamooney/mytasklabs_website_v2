@@ -4,6 +4,12 @@
   "functions": {
     "api/submit-plan.ts": {
       "includeFiles": "api/_lib/**"
+    },
+    "api/submit-free-design.ts": {
+      "includeFiles": "api/_lib/**"
+    },
+    "api/submit-contact.ts": {
+      "includeFiles": "api/_lib/**"
     }
   },
   "rewrites": [

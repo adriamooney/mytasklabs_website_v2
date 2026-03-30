@@ -115,6 +115,12 @@ This runs the app and `/api/submit-plan` on the same origin. If you use `npm run
 
 ---
 
+## Contact page (`/contact`)
+
+The form POSTs to **`/api/submit-contact`** using **Resend** (same `RESEND_API_KEY` and `RESEND_FROM` as LocalLift). Set **`CONTACT_NOTIFY_EMAIL`** to the inbox(es) that should receive submissions (comma-separated). The custom plan quiz still uses **EmailJS** via `/api/submit-plan` only.
+
+---
+
 ## LocalLift — Free Website Design (`/local-lift/free-design`)
 
 The form POSTs to **`/api/submit-free-design`** (same Vercel deployment pattern as `/api/submit-plan`).
@@ -123,7 +129,7 @@ The form POSTs to **`/api/submit-free-design`** (same Vercel deployment pattern 
 
 1. **Monday.com** — Creates one item using the **same** env vars as the custom plan flow (`MONDAY_API_TOKEN`, `MONDAY_BOARD_ID`, `MONDAY_GROUP_ID`, `MONDAY_COLUMN_EMAIL`, `MONDAY_COLUMN_LEAD_DATA`). Item name: `LocalLift Design — {Business Name}`. The lead’s email goes in the email column; **full form text** goes in the long-text lead column.
 
-2. **Resend (admin)** — Sends **you** a plain-text notification via [Resend](https://resend.com). Quiz (`/api/submit-plan`) and Contact still use **EmailJS** only.
+2. **Resend (admin)** — Sends **you** a plain-text notification via [Resend](https://resend.com). The custom plan quiz email still uses **EmailJS** (`/api/submit-plan`); the main **Contact** form uses Resend (`/api/submit-contact`).
 
 ### Environment variables (Vercel + `.env.local` for `vercel dev`)
 

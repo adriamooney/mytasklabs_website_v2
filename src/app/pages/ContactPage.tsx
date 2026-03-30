@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+import { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
@@ -12,43 +11,39 @@ export function ContactPage() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+  const [smsOptIn, setSmsOptIn] = useState(true);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect(() => {
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    if (publicKey) {
-      emailjs.init(publicKey);
-    }
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
     setErrorMessage('');
 
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-
-    if (!publicKey || !serviceId || !templateId) {
-      setStatus('error');
-      setErrorMessage('Email service is not configured. Please add VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_SERVICE_ID, and VITE_EMAILJS_TEMPLATE_ID to your .env.local file.');
-      return;
-    }
+    const apiBase = import.meta.env.VITE_API_URL ?? '';
 
     try {
-      await emailjs.send(serviceId, templateId, {
-        business_name: businessName,
-        email,
-        phone,
-        message,
+      const res = await fetch(`${apiBase}/api/submit-contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          businessName,
+          email,
+          phone,
+          message,
+          smsOptIn,
+        }),
       });
+      const json = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        throw new Error(json.error ?? 'Failed to send message.');
+      }
       setStatus('success');
       setBusinessName('');
       setEmail('');
       setPhone('');
       setMessage('');
+      setSmsOptIn(true);
     } catch (err) {
       setStatus('error');
       setErrorMessage(err instanceof Error ? err.message : 'Failed to send message.');
@@ -121,15 +116,25 @@ export function ContactPage() {
             <div className="flex items-start gap-3">
               <Checkbox
                 id="sms-consent"
-                checked
-                disabled
+                name="sms-consent"
+                checked={smsOptIn}
+                onCheckedChange={(v) => setSmsOptIn(v === true)}
                 className="mt-0.5 shrink-0"
               />
               <label
                 htmlFor="sms-consent"
-                className="text-sm text-gray-600 font-normal cursor-default leading-relaxed"
+                className="text-sm text-gray-600 font-normal cursor-pointer leading-relaxed"
               >
-                I agree to receive SMS messages from My Task Labs related to my inquiry. Message &amp; data rates may apply. Reply STOP to unsubscribe. View our <Link to="/privacy" className="text-indigo-600 hover:text-indigo-700 underline inline">Privacy Policy</Link> and <Link to="/terms" className="text-indigo-600 hover:text-indigo-700 underline inline">Terms of Service</Link>.
+                I agree to receive SMS messages from My Task Labs related to my inquiry. Message &amp; data rates
+                may apply. Reply STOP to unsubscribe. Message frequency varies. Reply HELP for help. View our{' '}
+                <Link to="/privacy" className="text-indigo-600 hover:text-indigo-700 underline inline">
+                  Privacy Policy
+                </Link>{' '}
+                and{' '}
+                <Link to="/terms" className="text-indigo-600 hover:text-indigo-700 underline inline">
+                  Terms of Service
+                </Link>
+                .
               </label>
             </div>
 
