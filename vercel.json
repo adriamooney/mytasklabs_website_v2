@@ -4,8 +4,7 @@
   "functions": {
     "api/submit-plan.ts": {
       "includeFiles": "api/_lib/**"
-    },
-    "api/submit-free-design.ts": {}
+    }
   },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
