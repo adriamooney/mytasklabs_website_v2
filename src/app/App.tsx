@@ -1,5 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
 import { Layout } from './components/Layout';
+import { GoogleAnalyticsTracker } from './components/GoogleAnalyticsTracker';
 import { MetaPixelTracker } from './components/MetaPixelTracker';
 import { SalesLayout } from './components/sales/SalesLayout';
 import { HomePage } from './pages/HomePage';
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     path: '/',
     element: (
       <>
+        <GoogleAnalyticsTracker />
         <MetaPixelTracker />
         <Outlet />
       </>
