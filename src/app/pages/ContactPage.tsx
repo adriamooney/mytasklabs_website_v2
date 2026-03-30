@@ -126,7 +126,9 @@ export function ContactPage() {
                 className="text-sm text-gray-600 font-normal cursor-pointer leading-relaxed"
               >
                 I agree to receive SMS messages from My Task Labs related to my inquiry. Message &amp; data rates
-                may apply. Reply STOP to unsubscribe. Message frequency varies. Reply HELP for help. View our{' '}
+                may apply. Reply STOP to unsubscribe. Message frequency varies. Reply HELP for help. Your mobile
+                information will not be sold or shared with third parties for promotional or marketing purposes.
+                View our{' '}
                 <Link to="/privacy" className="text-indigo-600 hover:text-indigo-700 underline inline">
                   Privacy Policy
                 </Link>{' '}
