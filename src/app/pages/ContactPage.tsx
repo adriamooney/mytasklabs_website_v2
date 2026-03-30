@@ -3,7 +3,6 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
-import { Checkbox } from '../components/ui/checkbox';
 import { Link } from 'react-router';
 
 export function ContactPage() {
@@ -114,12 +113,13 @@ export function ContactPage() {
             </div>
 
             <div className="flex items-start gap-3">
-              <Checkbox
+              <input
+                type="checkbox"
                 id="sms-consent"
-                name="sms-consent"
+                name="sms-opt-in"
                 checked={smsOptIn}
-                onCheckedChange={(v) => setSmsOptIn(v === true)}
-                className="mt-0.5 shrink-0"
+                onChange={(e) => setSmsOptIn(e.target.checked)}
+                className="mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border border-gray-300 text-indigo-600 accent-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
               />
               <label
                 htmlFor="sms-consent"

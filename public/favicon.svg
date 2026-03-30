@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="My Task Labs">
+  <!-- Matches site header: indigo-600 tile + simple task list mark -->
+  <rect width="32" height="32" rx="8" fill="#4f46e5"/>
+  <path fill="#ffffff" d="M9 10h14v2H9zm0 5h12v2H9zm0 5h10v2H9z"/>
+</svg>
