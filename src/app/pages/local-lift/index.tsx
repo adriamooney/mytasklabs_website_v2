@@ -258,7 +258,14 @@ export function LocalLiftPage() {
           <li>AI search visibility (ChatGPT, Gemini, Siri)</li>
           <li>Monthly performance report</li>
         </ul>
-        <Link to="/local-lift/free-design" className="price-outline-btn">Get started</Link>
+        <a
+          href="https://zcal.co/adriamooney/15min-local-lift"
+          className="price-outline-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get started
+        </a>
       </div>
       <div className="price-card featured">
         <div className="popular-badge">Most popular</div>
@@ -275,7 +282,14 @@ export function LocalLiftPage() {
           <li>SMS conversation management</li>
           <li>Lead follow-up sequences</li>
         </ul>
-        <Link to="/local-lift/free-design" className="price-btn">Get started</Link>
+        <a
+          href="https://zcal.co/adriamooney/15min-local-lift"
+          className="price-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get started
+        </a>
       </div>
       <div className="price-card">
         <div className="price-tier">Pro</div>
@@ -292,7 +306,14 @@ export function LocalLiftPage() {
           <li>Dedicated account manager</li>
           <li>Priority support</li>
         </ul>
-        <Link to="/local-lift/free-design" className="price-outline-btn">Get started</Link>
+        <a
+          href="https://zcal.co/adriamooney/15min-local-lift"
+          className="price-outline-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get started
+        </a>
       </div>
     </div>
     <p style={{ textAlign: "center", marginTop: 28, fontSize: 13, color: "var(--bark-light)" }}>Full Stack includes up to $500/mo in managed ad spend. Additional spend managed at 15%. Ad spend billed directly to client.</p>
