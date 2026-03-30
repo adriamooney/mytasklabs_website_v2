@@ -18,6 +18,9 @@ import { ProcessPage } from './pages/ProcessPage';
 import { BookedAndBusyPage } from './pages/BookedAndBusyPage';
 import { CustomPlanQuizPage } from './pages/CustomPlanQuizPage';
 import { YourPlanPage } from './pages/YourPlanPage';
+import { ScrollToTop } from './components/ScrollToTop';
+import { LocalLiftPage } from './pages/local-lift';
+import { LocalLiftFreeDesignPage } from './pages/local-lift/LocalLiftFreeDesignPage';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +69,19 @@ const router = createBrowserRouter([
         element: <SalesLayout />,
         children: [
           { index: true, element: <YourPlanPage /> },
+        ],
+      },
+      {
+        path: 'local-lift',
+        element: (
+          <>
+            <ScrollToTop />
+            <Outlet />
+          </>
+        ),
+        children: [
+          { index: true, element: <LocalLiftPage /> },
+          { path: 'free-design', element: <LocalLiftFreeDesignPage /> },
         ],
       },
     ],
