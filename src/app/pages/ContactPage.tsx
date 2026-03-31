@@ -10,7 +10,7 @@ export function ContactPage() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-  const [smsOptIn, setSmsOptIn] = useState(true);
+  const [smsOptIn, setSmsOptIn] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -22,7 +22,8 @@ export function ContactPage() {
     const apiBase = import.meta.env.VITE_API_URL ?? '';
 
     try {
-      const res = await fetch(`${apiBase}/api/submit-contact`, {
+      const base = apiBase.replace(/\/$/, '');
+      const res = await fetch(`${base}/api/submit-contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -33,16 +34,35 @@ export function ContactPage() {
           smsOptIn,
         }),
       });
-      const json = (await res.json().catch(() => ({}))) as { error?: string };
+      const rawText = await res.text();
+      let parsed: { error?: string; ok?: boolean } = {};
+      if (rawText) {
+        try {
+          parsed = JSON.parse(rawText) as { error?: string; ok?: boolean };
+        } catch {
+          /* non-JSON body (e.g. HTML from Vite when /api is not implemented) */
+        }
+      }
       if (!res.ok) {
-        throw new Error(json.error ?? 'Failed to send message.');
+        const hint =
+          res.status === 404 || rawText.trim().startsWith('<')
+            ? ' Contact API not found. Use npx vercel dev (not only npm run dev), or deploy and test on your live site.'
+            : '';
+        throw new Error((parsed.error ?? `Request failed (${res.status}).`) + hint);
+      }
+      // Vite dev can return 200 + HTML for unknown paths; require explicit API success shape
+      if (parsed.ok !== true) {
+        throw new Error(
+          parsed.error ??
+            'Contact API did not respond correctly. If you are on localhost with npm run dev, run npx vercel dev instead, or test on your deployed site.',
+        );
       }
       setStatus('success');
       setBusinessName('');
       setEmail('');
       setPhone('');
       setMessage('');
-      setSmsOptIn(true);
+      setSmsOptIn(false);
     } catch (err) {
       setStatus('error');
       setErrorMessage(err instanceof Error ? err.message : 'Failed to send message.');
@@ -125,6 +145,7 @@ export function ContactPage() {
                 htmlFor="sms-consent"
                 className="text-sm text-gray-600 font-normal cursor-pointer leading-relaxed"
               >
+                <span className="text-gray-500">Optional. </span>
                 I agree to receive SMS messages from My Task Labs related to my inquiry. Message &amp; data rates
                 may apply. Reply STOP to unsubscribe. Message frequency varies. Reply HELP for help. Your mobile
                 information will not be sold or shared with third parties for promotional or marketing purposes.
