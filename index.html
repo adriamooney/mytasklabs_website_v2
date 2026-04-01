@@ -56,11 +56,11 @@
       </script>
       <!-- End Meta Pixel Code -->
 
-      <!-- Reddit Pixel Code -->
+      <!-- Reddit Pixel Code — stub must use callQueue (matches ads/pixel.js); a plain queue never flushes. -->
       <script>
-        !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.queue.push(arguments)};p.queue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/v2/rdtjs/rt.js";t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
-        rdt('init','a2_irs1ef7pshi3');
-        rdt('track','PageVisit');
+        !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js";t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+        window.rdt('init','a2_irs1ef7pshi3');
+        window.rdt('track','PageView');
       </script>
       <!-- End Reddit Pixel Code -->
     </head>
