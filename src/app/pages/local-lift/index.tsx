@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router';
 import { LocalLiftFooter } from '../../components/local-lift/LocalLiftFooter';
 import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
+import { trackLead } from '../../analytics/ctaEvents';
 import './local-lift.css';
 
 const DEFAULT_DOC_TITLE = 'My Task Labs | AI Automation Consulting';
@@ -28,7 +29,11 @@ export function LocalLiftPage() {
     <h1>More booked jobs.<br /><em>Less missed calls.</em></h1>
     <p className="hero-sub">We build your website free, get you found on Google and ChatGPT, then automatically respond to every lead — day or night — and book them straight into your calendar.</p>
     <div className="hero-actions">
-      <Link to="/local-lift/free-design" className="btn-primary">
+      <Link
+        to="/local-lift/free-design"
+        className="btn-primary"
+        onClick={() => trackLead()}
+      >
         Get my free website design
         <span className="arrow">→</span>
       </Link>
@@ -341,7 +346,11 @@ export function LocalLiftPage() {
     <div className="section-label" style={{ color: "var(--green-pale)" }}>Zero risk</div>
     <h2>See your new website <em>before you spend a thing.</em></h2>
     <p>Tell us about your business and we'll design a custom website mockup for free — no credit card, no commitment. If you love it, we'll build it. If not, keep the design.</p>
-    <Link to="/local-lift/free-design" className="btn-primary">
+    <Link
+      to="/local-lift/free-design"
+      className="btn-primary"
+      onClick={() => trackLead()}
+    >
       Get my free website design
       <span className="arrow">→</span>
     </Link>
