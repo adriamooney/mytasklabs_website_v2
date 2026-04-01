@@ -72,7 +72,7 @@ export function SalesCTA() {
         {/* Footer */}
         <div className="mt-12 pt-8 border-t-2 border-gray-200 text-center">
           <p className="text-gray-600">
-            <span className="font-semibold text-gray-900">My Task Labs</span> · mytasklabs.com · Built for junk removal owner-operators
+            <span className="font-semibold text-gray-900">My Task Labs</span> · mytasklabs.us · Built for junk removal owner-operators
           </p>
         </div>
       </div>

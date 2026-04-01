@@ -1,0 +1,176 @@
+/*
+ * Shared LocalLift marketing footers (landing + free-design).
+ * Parent must set design tokens on .local-lift-root or .local-lift-free-design-root (see local-lift.css).
+ * Do not use bare `nav` in page CSS — it would match .ll-footer-nav; use .ll-header* from LocalLiftHeader only.
+ */
+
+.ll-footer {
+  background: var(--bark, #2d2412);
+  color: var(--bark-light, #9c8060);
+  padding: 48px 48px 32px;
+}
+
+.ll-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ll-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.ll-footer-mtl-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: var(--cream, #fefae0);
+  transition: opacity 0.2s;
+}
+
+.ll-footer-mtl-logo:hover {
+  opacity: 0.9;
+}
+
+.ll-footer-mtl-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #4f46e5;
+  flex-shrink: 0;
+}
+
+.ll-footer-mtl-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cream, #fefae0);
+}
+
+.ll-footer-mtl-tagline {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.ll-footer-mtl-contact {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.ll-footer-mtl-contact a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ll-footer-mtl-contact a:hover {
+  color: var(--cream, #fefae0);
+}
+
+.ll-footer-ll-brand {
+  font-family: var(--font-display, Fraunces, serif);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--cream, #fefae0);
+  margin-bottom: 4px;
+}
+
+.ll-footer-ll-brand span {
+  color: var(--green-light, #52b788);
+}
+
+.ll-footer-ll-sub {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.ll-footer-ll-sub a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ll-footer-ll-sub a:hover {
+  color: var(--cream, #fefae0);
+}
+
+.ll-footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ll-footer-nav a {
+  font-size: 13px;
+  color: var(--bark-light, #9c8060);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ll-footer-nav a:hover {
+  color: var(--cream, #fefae0);
+}
+
+.ll-footer-col-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream, #fefae0);
+  margin-bottom: 12px;
+}
+
+.ll-footer-co-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ll-footer-co-list a {
+  font-size: 13px;
+  color: var(--bark-light, #9c8060);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ll-footer-co-list a:hover {
+  color: var(--cream, #fefae0);
+}
+
+.ll-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--bark-light, #9c8060);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .ll-footer {
+    padding: 32px 24px 24px;
+  }
+
+  .ll-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .ll-footer-mtl-logo {
+    justify-content: center;
+  }
+
+  .ll-footer-nav {
+    align-items: center;
+  }
+
+  .ll-footer-co-list {
+    align-items: center;
+  }
+}

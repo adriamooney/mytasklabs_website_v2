@@ -1,4 +1,4 @@
-/* LocalLift free design request — scoped; from sample_code/locallift-design-request.html */
+/* LocalLift free design — tokens on root; form/layout on .ll-fd-main so footer is not reset. Header lives in LocalLiftHeader.css. */
 
 .local-lift-free-design-root {
 
@@ -24,32 +24,14 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
 
-@scope (.local-lift-free-design-root) {
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  /* NAV */
-  nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
-    background: rgba(253,250,244,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(45,106,79,0.1);
-    position: sticky; top: 0; z-index: 100;
+  .ll-fd-main *,
+  .ll-fd-main *::before,
+  .ll-fd-main *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 22px; font-weight: 800;
-    color: var(--green); text-decoration: none;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-back {
-    font-size: 14px; color: var(--bark-mid); text-decoration: none;
-    display: flex; align-items: center; gap: 6px;
-    transition: color 0.2s;
-  }
-  .nav-back:hover { color: var(--green); }
 
   /* MAIN LAYOUT */
   .page-wrap {
@@ -386,21 +368,9 @@
   .ty-step-text { font-size: 13px; color: var(--bark-mid); line-height: 1.5; }
   .ty-step-text strong { color: var(--bark); font-weight: 500; }
 
-  /* FOOTER */
-  footer {
-    background: var(--bark);
-    padding: 28px 48px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .footer-brand {
-    font-family: var(--font-display);
-    font-size: 16px; font-weight: 800; color: var(--cream);
-  }
-  .footer-brand span { color: var(--green-light); }
-  .footer-copy { font-size: 12px; color: var(--bark-light); }
+  /* FOOTER — shared layout in components/local-lift/LocalLiftFooter.css */
 
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
     .page-wrap { grid-template-columns: 1fr; }
     .left-panel {
       position: static; height: auto;
@@ -409,6 +379,5 @@
     .left-bottom { margin-top: 32px; }
     .right-panel { padding: 40px 24px; }
     .field-row { grid-template-columns: 1fr; }
-    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
 }

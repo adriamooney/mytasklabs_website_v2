@@ -1,0 +1,94 @@
+/* LocalLift top bar — scoped to .ll-header* only (see LocalLiftHeader.tsx). */
+
+.ll-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(253, 250, 244, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(45, 106, 79, 0.1);
+  z-index: 100;
+}
+
+.ll-header--landing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.ll-header--subpage {
+  position: sticky;
+  top: 0;
+  padding: 20px 48px;
+  background: rgba(253, 250, 244, 0.92);
+}
+
+.ll-header__logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--green);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.ll-header__logo span {
+  color: var(--accent);
+}
+
+.ll-header__links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.ll-header__links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bark-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ll-header__links a:hover {
+  color: var(--green);
+}
+
+.ll-header__cta {
+  background: var(--green);
+  color: var(--cream) !important;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-weight: 500 !important;
+  transition: background 0.2s !important;
+}
+
+.ll-header__cta:hover {
+  background: var(--green-mid) !important;
+}
+
+.ll-header__back {
+  font-size: 14px;
+  color: var(--bark-mid);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+
+.ll-header__back:hover {
+  color: var(--green);
+}
+
+@media (max-width: 900px) {
+  .ll-header {
+    padding: 16px 24px;
+  }
+
+  .ll-header__links {
+    display: none;
+  }
+}

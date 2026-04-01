@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import { LocalLiftFooter } from '../../components/local-lift/LocalLiftFooter';
+import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
 import './local-lift-free-design.css';
 
 const DOC_TITLE = 'Get Your Free Website Design — LocalLift';
@@ -196,15 +198,9 @@ export function LocalLiftFreeDesignPage() {
 
   return (
     <div className="local-lift-free-design-root">
-      <nav>
-        <Link to="/local-lift" className="nav-logo">
-          Local<span>Lift</span>
-        </Link>
-        <Link to="/local-lift" className="nav-back">
-          ← Back to LocalLift
-        </Link>
-      </nav>
+      <LocalLiftHeader variant="subpage" />
 
+      <main className="ll-fd-main">
       <div className="page-wrap">
         <div className="left-panel">
           <div className="left-content">
@@ -636,24 +632,9 @@ export function LocalLiftFreeDesignPage() {
           </div>
         </div>
       </div>
+      </main>
 
-      <footer>
-        <div className="footer-brand">
-          Local<span>Lift</span>{' '}
-          <span
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 12,
-              color: 'var(--bark-light)',
-              fontWeight: 400,
-              marginLeft: 8,
-            }}
-          >
-            by My Task Labs
-          </span>
-        </div>
-        <div className="footer-copy">© 2026 My Task Labs · All rights reserved</div>
-      </footer>
+      <LocalLiftFooter />
     </div>
   );
 }

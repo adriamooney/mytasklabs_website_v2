@@ -15,6 +15,7 @@ import { HomeServicesPage } from './pages/HomeServicesPage';
 import { ProfessionalServicesPage } from './pages/ProfessionalServicesPage';
 import { OperationsPage } from './pages/OperationsPage';
 import { ProcessPage } from './pages/ProcessPage';
+import { AboutPage } from './pages/AboutPage';
 import { BookedAndBusyPage } from './pages/BookedAndBusyPage';
 import { CustomPlanQuizPage } from './pages/CustomPlanQuizPage';
 import { YourPlanPage } from './pages/YourPlanPage';
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
           { index: true, element: <HomePage /> },
+          { path: 'about', element: <AboutPage /> },
           { path: 'contact', element: <ContactPage /> },
           { path: 'privacy', element: <PrivacyPage /> },
           { path: 'terms', element: <TermsPage /> },

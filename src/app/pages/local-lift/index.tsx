@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router';
+import { LocalLiftFooter } from '../../components/local-lift/LocalLiftFooter';
+import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
 import './local-lift.css';
 
 const DEFAULT_DOC_TITLE = 'My Task Labs | AI Automation Consulting';
 const LOCAL_LIFT_DOC_TITLE = 'LocalLift by My Task Labs — More Customers. Less Chaos.';
+const LOCAL_LIFT_ZCAL = 'https://zcal.co/adriamooney/15min-local-lift';
 
 export function LocalLiftPage() {
   useEffect(() => {
@@ -15,23 +18,9 @@ export function LocalLiftPage() {
 
   return (
     <div className="local-lift-root">
-<nav>
-  <div className="nav-brand">
-    <Link to="/local-lift" className="nav-logo">Local<span>Lift</span></Link>
-    <Link to="/" className="nav-product-line" aria-label="My Task Labs home">
-      <span className="nav-mtl-mark" aria-hidden />
-      <span className="nav-product-text">A My Task Labs Product</span>
-    </Link>
-  </div>
-  <div className="nav-links">
-    <a href="#how">How it works</a>
-    <a href="#services">What's included</a>
-    <a href="#pricing">Pricing</a>
-    <Link to="/local-lift/free-design" className="nav-cta">Get free design</Link>
-  </div>
-</nav>
-
-<section className="hero">
+      <LocalLiftHeader variant="landing" />
+      <main className="ll-main">
+      <section className="hero">
   <div className="hero-bg"></div>
   <div className="hero-dots"></div>
   <div className="hero-inner">
@@ -152,7 +141,7 @@ export function LocalLiftPage() {
   <div className="services-inner">
     <div className="section-label">What's included</div>
     <h2>Everything you need, <em>nothing you don't.</em></h2>
-    <p className="section-intro">Four services that work together as one system. No managing multiple vendors, no stitching tools together yourself.</p>
+    <p className="section-intro">Five services that work together as one system. No managing multiple vendors, no stitching tools together yourself.</p>
     <div className="services-grid">
       <div className="service-card featured">
         <div className="service-icon">⚡</div>
@@ -184,6 +173,14 @@ export function LocalLiftPage() {
           <h3>Google Business Profile management</h3>
           <p>We fully optimize and actively manage your GBP — posts, reviews, photos, and citations — so you rank higher on Google Maps and local search results.</p>
           <span className="service-pill">Ongoing monthly</span>
+        </div>
+      </div>
+      <div className="service-card">
+        <div className="service-icon">📣</div>
+        <div className="service-body">
+          <h3>Google &amp; Facebook ads management</h3>
+          <p>We run and optimize paid campaigns on Google and Meta — targeting, creative, and landing pages — so you get qualified leads without becoming an ad expert yourself. Included on Full Stack plans with managed spend up to $500/mo.</p>
+          <span className="service-pill">Full Stack plan</span>
         </div>
       </div>
     </div>
@@ -249,7 +246,7 @@ export function LocalLiftPage() {
         <div className="price-tier">Starter</div>
         <div className="price-name">Visibility</div>
         <div className="price-desc">Get found everywhere customers search</div>
-        <div className="price-amount"><sup>$</sup>199<span>/mo</span></div>
+        <div className="price-amount"><sup>$</sup>249<span>/mo</span></div>
         <div className="price-divider"></div>
         <ul className="price-features">
           <li>Professional website (free design included)</li>
@@ -259,7 +256,7 @@ export function LocalLiftPage() {
           <li>Monthly performance report</li>
         </ul>
         <a
-          href="https://zcal.co/adriamooney/15min-local-lift"
+          href={LOCAL_LIFT_ZCAL}
           className="price-outline-btn"
           target="_blank"
           rel="noopener noreferrer"
@@ -272,7 +269,7 @@ export function LocalLiftPage() {
         <div className="price-tier">Growth</div>
         <div className="price-name">Visibility + Automation</div>
         <div className="price-desc">Get found and never miss a lead</div>
-        <div className="price-amount" style={{ color: "var(--cream)" }}><sup>$</sup>349<span>/mo</span></div>
+        <div className="price-amount" style={{ color: "var(--cream)" }}><sup>$</sup>399<span>/mo</span></div>
         <div className="price-divider"></div>
         <ul className="price-features">
           <li>Everything in Visibility</li>
@@ -283,7 +280,7 @@ export function LocalLiftPage() {
           <li>Lead follow-up sequences</li>
         </ul>
         <a
-          href="https://zcal.co/adriamooney/15min-local-lift"
+          href={LOCAL_LIFT_ZCAL}
           className="price-btn"
           target="_blank"
           rel="noopener noreferrer"
@@ -295,7 +292,7 @@ export function LocalLiftPage() {
         <div className="price-tier">Pro</div>
         <div className="price-name">Full Stack</div>
         <div className="price-desc">The complete local growth system</div>
-        <div className="price-amount"><sup>$</sup>749<span>/mo</span></div>
+        <div className="price-amount"><sup>$</sup>799<span>/mo</span></div>
         <div className="price-divider"></div>
         <ul className="price-features">
           <li>Everything in Growth</li>
@@ -307,7 +304,7 @@ export function LocalLiftPage() {
           <li>Priority support</li>
         </ul>
         <a
-          href="https://zcal.co/adriamooney/15min-local-lift"
+          href={LOCAL_LIFT_ZCAL}
           className="price-outline-btn"
           target="_blank"
           rel="noopener noreferrer"
@@ -315,6 +312,25 @@ export function LocalLiftPage() {
           Get started
         </a>
       </div>
+    </div>
+    <div className="pricing-custom-row">
+      <div className="pricing-custom-row-text">
+        <h3 className="pricing-custom-title">Build your own custom plan</h3>
+        <p className="pricing-custom-desc">
+          Pick only the tools you need — mix and match services, skip what you don&apos;t, and keep the rest simple. We&apos;ll map the right setup with you on a quick call.
+        </p>
+      </div>
+      <a
+        href={LOCAL_LIFT_ZCAL}
+        className="price-btn pricing-custom-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Book a call
+        <span className="pricing-custom-cta-arrow" aria-hidden>
+          →
+        </span>
+      </a>
     </div>
     <p style={{ textAlign: "center", marginTop: 28, fontSize: 13, color: "var(--bark-light)" }}>Full Stack includes up to $500/mo in managed ad spend. Additional spend managed at 15%. Ad spend billed directly to client.</p>
   </div>
@@ -333,20 +349,9 @@ export function LocalLiftPage() {
   </div>
 </section>
 
-<footer>
-  <div>
-    <div className="footer-brand">Local<span>Lift</span></div>
-    <div className="footer-sub">
-      <Link to="/">A My Task Labs product</Link>
-    </div>
-  </div>
-  <div className="footer-links">
-    <a href="#how">How it works</a>
-    <a href="#services">Services</a>
-    <a href="#pricing">Pricing</a>
-    <a href="mailto:contact@mytasklabs.us">Contact</a>
-  </div>
-</footer>
+      </main>
+
+      <LocalLiftFooter samePageHash />
 
     </div>
   );

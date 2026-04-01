@@ -1,5 +1,15 @@
 import { Link, useLocation } from 'react-router';
+import { ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import { cn } from './ui/utils';
+
+const ZCAL_GET_STARTED = 'https://zcal.co/adriamooney/15min';
 
 const HOME_NAV_ITEMS = [
   { label: 'Services', hash: 'services' },
@@ -29,8 +39,28 @@ export function Header() {
               <Link key={hash} to={`/#${hash}`} className={navLinkClass}>{label}</Link>
             )
           )}
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={cn(
+                navLinkClass,
+                'inline-flex items-center gap-0.5 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 focus-visible:ring-offset-2 rounded-sm',
+              )}
+            >
+              Products
+              <ChevronDown className="h-4 w-4 opacity-70" aria-hidden />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-[10rem]">
+              <DropdownMenuItem asChild>
+                <Link to="/local-lift">LocalLift</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link to="/contact" className={navLinkClass}>Contact</Link>
-          <Link to="/process"><Button size="sm">Get Started</Button></Link>
+          <Button size="sm" asChild>
+            <a href={ZCAL_GET_STARTED} target="_blank" rel="noopener noreferrer">
+              Get Started
+            </a>
+          </Button>
         </nav>
       </div>
     </header>

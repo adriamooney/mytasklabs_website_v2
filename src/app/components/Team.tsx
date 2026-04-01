@@ -1,4 +1,4 @@
-const team = [
+export const TEAM_MEMBERS = [
   {
     image: '/images/adria copy.jpeg',
     name: 'Adria Mooney',
@@ -17,7 +17,7 @@ const team = [
     title: 'Operations & Workflow Architect',
     bio: 'James works with teams to translate messy real-world processes into clear, structured workflows.',
   },
-];
+] as const;
 
 export function Team() {
   return (
@@ -30,7 +30,7 @@ export function Team() {
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member) => (
+          {TEAM_MEMBERS.map((member) => (
             <div
               key={member.name}
               className="group bg-white border border-gray-200 rounded-xl p-8 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
