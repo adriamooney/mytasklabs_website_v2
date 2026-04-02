@@ -25,11 +25,16 @@ import { SeoHead } from './components/SeoHead';
 import { LocalLiftPage } from './pages/local-lift';
 import { LocalLiftFreeDesignPage } from './pages/local-lift/LocalLiftFreeDesignPage';
 
+/**
+ * Pathless root layout so SeoHead + trackers always mount for every URL
+ * (including /local-lift). A single `path: '/'` parent does not reliably wrap
+ * sibling routes the same way in the data router.
+ */
 const router = createBrowserRouter([
   {
-    path: '/',
     element: (
       <>
+        <SeoHead />
         <GoogleAnalyticsTracker />
         <MetaPixelTracker />
         <RedditPixelTracker />
@@ -38,6 +43,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: '/',
         element: <Layout />,
         children: [
           { index: true, element: <HomePage /> },
@@ -80,7 +86,6 @@ const router = createBrowserRouter([
         path: 'local-lift',
         element: (
           <>
-            <SeoHead />
             <ScrollToTop />
             <Outlet />
           </>

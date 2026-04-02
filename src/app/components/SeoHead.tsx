@@ -2,15 +2,21 @@ import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router';
 import { buildCanonicalUrl, getSeoForPathname, type SeoMeta } from '../seo/seoConfig';
 
+/** Set content on the first matching meta and remove duplicates (extensions or past runs can add extras). */
 function setOrCreateMeta(attr: 'name' | 'property', key: string, content: string): void {
   const selector = attr === 'name' ? `meta[name="${key}"]` : `meta[property="${key}"]`;
-  let el = document.head.querySelector(selector) as HTMLMetaElement | null;
-  if (!el) {
-    el = document.createElement('meta');
+  const nodes = document.head.querySelectorAll(selector);
+  if (nodes.length === 0) {
+    const el = document.createElement('meta');
     el.setAttribute(attr, key);
+    el.setAttribute('content', content);
     document.head.appendChild(el);
+    return;
   }
-  el.setAttribute('content', content);
+  nodes.forEach((node, i) => {
+    if (i === 0) (node as HTMLMetaElement).setAttribute('content', content);
+    else node.remove();
+  });
 }
 
 function removeMetaByName(name: string): void {
@@ -61,7 +67,10 @@ function applySeo(seo: SeoMeta, pathname: string): void {
   setCanonical(canonical);
 }
 
-/** Updates document title and meta tags when the route changes. Mount inside each layout branch (Layout, SalesLayout, local-lift). */
+/**
+ * Single instance at pathless router root — runs for every URL.
+ * Meta updates appear in DevTools → Elements (live DOM), not in View Page Source.
+ */
 export function SeoHead() {
   const { pathname } = useLocation();
 
