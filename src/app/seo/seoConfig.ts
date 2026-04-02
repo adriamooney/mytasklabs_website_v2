@@ -12,6 +12,12 @@ export type SeoMeta = {
   /** Defaults to index, follow when omitted */
   robots?: string;
   ogImage?: string;
+  /** Shown as og:site_name */
+  ogSiteName?: string;
+  /** meta name="keywords" — omit on most pages */
+  keywords?: string;
+  /** meta name="theme-color" (browser UI) */
+  themeColor?: string;
 };
 
 const BRAND = 'My Task Labs';
@@ -20,6 +26,8 @@ const DEFAULT: SeoMeta = {
   title: `${BRAND} | AI Automation Consulting`,
   description:
     'My Task Labs helps businesses streamline workflows, convert more leads, and scale efficiently through intelligent AI automation—workflow audits, lead automation, and custom solutions.',
+  ogSiteName: BRAND,
+  themeColor: '#4f46e5',
 };
 
 /**
@@ -105,14 +113,22 @@ const ROUTES: Record<string, SeoMeta> = {
       'Your personalized automation plan from My Task Labs—priorities, scores, and a 60-day target based on your quiz results.',
   },
   '/local-lift': {
-    title: 'LocalLift by My Task Labs — More Customers. Less Chaos.',
+    title: 'LocalLift — Websites, Local SEO & AI Lead Booking for Home Services',
     description:
-      'LocalLift: free website design, local SEO, AI search visibility, and automated lead response that books jobs into your calendar—built for local service businesses.',
+      'LocalLift (by My Task Labs) is built for contractors and local service businesses: a professional website, Google Maps and local SEO, visibility in AI search, and 24/7 automated lead response that books jobs straight into your calendar.',
+    ogSiteName: 'LocalLift',
+    keywords:
+      'LocalLift, local service business marketing, home services website, Google Business Profile, local SEO, Google Maps SEO, AI search visibility, automated lead response, missed call text, appointment booking, contractor marketing, HVAC plumbing electrical landscaping',
+    themeColor: '#2D6A4F',
   },
   '/local-lift/free-design': {
-    title: 'Get Your Free Website Design — LocalLift',
+    title: 'Free Website Design for Your Local Business — LocalLift',
     description:
-      'Request your free website design from LocalLift: tell us about your business, style, and goals—we’ll follow up with a tailored mockup.',
+      'Tell LocalLift about your trade, service area, and brand style—we’ll prepare a free custom website design concept and follow up with next steps. No obligation.',
+    ogSiteName: 'LocalLift',
+    keywords:
+      'free website design, local business website, contractor website mockup, home services branding, LocalLift, local SEO website',
+    themeColor: '#2D6A4F',
   },
 };
 
@@ -124,7 +140,8 @@ function normalizePathname(pathname: string): string {
 
 export function getSeoForPathname(pathname: string): SeoMeta {
   const key = normalizePathname(pathname.split('?')[0] ?? pathname);
-  if (ROUTES[key]) return ROUTES[key];
+  const found = ROUTES[key];
+  if (found) return { ...DEFAULT, ...found };
   return DEFAULT;
 }
 

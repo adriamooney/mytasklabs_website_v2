@@ -3,7 +3,6 @@ import { Layout } from './components/Layout';
 import { GoogleAnalyticsTracker } from './components/GoogleAnalyticsTracker';
 import { MetaPixelTracker } from './components/MetaPixelTracker';
 import { RedditPixelTracker } from './components/RedditPixelTracker';
-import { SeoHead } from './components/SeoHead';
 import { SalesLayout } from './components/sales/SalesLayout';
 import { HomePage } from './pages/HomePage';
 import { ContactPage } from './pages/ContactPage';
@@ -22,6 +21,7 @@ import { BookedAndBusyPage } from './pages/BookedAndBusyPage';
 import { CustomPlanQuizPage } from './pages/CustomPlanQuizPage';
 import { YourPlanPage } from './pages/YourPlanPage';
 import { ScrollToTop } from './components/ScrollToTop';
+import { SeoHead } from './components/SeoHead';
 import { LocalLiftPage } from './pages/local-lift';
 import { LocalLiftFreeDesignPage } from './pages/local-lift/LocalLiftFreeDesignPage';
 
@@ -30,7 +30,6 @@ const router = createBrowserRouter([
     path: '/',
     element: (
       <>
-        <SeoHead />
         <GoogleAnalyticsTracker />
         <MetaPixelTracker />
         <RedditPixelTracker />
@@ -81,6 +80,7 @@ const router = createBrowserRouter([
         path: 'local-lift',
         element: (
           <>
+            <SeoHead />
             <ScrollToTop />
             <Outlet />
           </>

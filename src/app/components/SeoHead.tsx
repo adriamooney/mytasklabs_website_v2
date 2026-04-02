@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router';
 import { buildCanonicalUrl, getSeoForPathname, type SeoMeta } from '../seo/seoConfig';
 
@@ -11,6 +11,10 @@ function setOrCreateMeta(attr: 'name' | 'property', key: string, content: string
     document.head.appendChild(el);
   }
   el.setAttribute('content', content);
+}
+
+function removeMetaByName(name: string): void {
+  document.head.querySelectorAll(`meta[name="${name}"]`).forEach((el) => el.remove());
 }
 
 function setCanonical(href: string): void {
@@ -35,10 +39,19 @@ function applySeo(seo: SeoMeta, pathname: string): void {
   setOrCreateMeta('property', 'og:title', seo.title);
   setOrCreateMeta('property', 'og:description', seo.description);
   setOrCreateMeta('property', 'og:url', canonical);
+  setOrCreateMeta('property', 'og:site_name', seo.ogSiteName ?? 'My Task Labs');
 
   setOrCreateMeta('name', 'twitter:card', 'summary_large_image');
   setOrCreateMeta('name', 'twitter:title', seo.title);
   setOrCreateMeta('name', 'twitter:description', seo.description);
+
+  setOrCreateMeta('name', 'theme-color', seo.themeColor ?? '#4f46e5');
+
+  if (seo.keywords) {
+    setOrCreateMeta('name', 'keywords', seo.keywords);
+  } else {
+    removeMetaByName('keywords');
+  }
 
   if (seo.ogImage) {
     setOrCreateMeta('property', 'og:image', seo.ogImage);
@@ -48,11 +61,11 @@ function applySeo(seo: SeoMeta, pathname: string): void {
   setCanonical(canonical);
 }
 
-/** Updates document title and meta tags when the route changes. */
+/** Updates document title and meta tags when the route changes. Mount inside each layout branch (Layout, SalesLayout, local-lift). */
 export function SeoHead() {
   const { pathname } = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     applySeo(getSeoForPathname(pathname), pathname);
   }, [pathname]);
 
