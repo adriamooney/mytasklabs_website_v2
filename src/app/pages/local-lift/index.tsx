@@ -1,22 +1,12 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router';
 import { LocalLiftFooter } from '../../components/local-lift/LocalLiftFooter';
 import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
 import { trackLead } from '../../analytics/ctaEvents';
 import './local-lift.css';
 
-const DEFAULT_DOC_TITLE = 'My Task Labs | AI Automation Consulting';
-const LOCAL_LIFT_DOC_TITLE = 'LocalLift by My Task Labs — More Customers. Less Chaos.';
 const LOCAL_LIFT_ZCAL = 'https://zcal.co/adriamooney/15min-local-lift';
 
 export function LocalLiftPage() {
-  useEffect(() => {
-    document.title = LOCAL_LIFT_DOC_TITLE;
-    return () => {
-      document.title = DEFAULT_DOC_TITLE;
-    };
-  }, []);
-
   return (
     <div className="local-lift-root">
       <LocalLiftHeader variant="landing" />

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 
-/** Fires Reddit Pixel PageView on SPA route changes (initial PageView is in index.html). */
+/** Fires Reddit Pixel PageVisit on SPA route changes (initial PageVisit is in index.html). */
 export function RedditPixelTracker() {
   const { pathname } = useLocation();
   const isFirstNavigation = useRef(true);
@@ -14,7 +14,7 @@ export function RedditPixelTracker() {
       isFirstNavigation.current = false;
       return;
     }
-    window.rdt('track', 'PageView');
+    window.rdt('track', 'PageVisit');
   }, [pathname]);
 
   return null;

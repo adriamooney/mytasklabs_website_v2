@@ -1,11 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router';
 import { LocalLiftFooter } from '../../components/local-lift/LocalLiftFooter';
 import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
 import './local-lift-free-design.css';
-
-const DOC_TITLE = 'Get Your Free Website Design — LocalLift';
-const DEFAULT_DOC_TITLE = 'My Task Labs | AI Automation Consulting';
 
 const STEP_LABELS = ['Your business', 'Presence & style', 'Contact info'];
 
@@ -51,13 +48,6 @@ export function LocalLiftFreeDesignPage() {
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [submitError, setSubmitError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    document.title = DOC_TITLE;
-    return () => {
-      document.title = DEFAULT_DOC_TITLE;
-    };
-  }, []);
 
   const clearError = (key: string) => {
     setErrors((prev) => {
