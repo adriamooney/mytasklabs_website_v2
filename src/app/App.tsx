@@ -24,6 +24,7 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { SeoHead } from './components/SeoHead';
 import { LocalLiftPage } from './pages/local-lift';
 import { LocalLiftFreeDesignPage } from './pages/local-lift/LocalLiftFreeDesignPage';
+import { LocalLiftJunkRemovalPage } from './pages/local-lift/LocalLiftJunkRemovalPage';
 
 /**
  * Pathless root layout so SeoHead + trackers always mount for every URL
@@ -93,6 +94,7 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <LocalLiftPage /> },
           { path: 'free-design', element: <LocalLiftFreeDesignPage /> },
+          { path: 'junk-removal', element: <LocalLiftJunkRemovalPage /> },
         ],
       },
     ],

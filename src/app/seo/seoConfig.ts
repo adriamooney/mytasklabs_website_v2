@@ -130,6 +130,15 @@ const ROUTES: Record<string, SeoMeta> = {
       'free website design, local business website, contractor website mockup, home services branding, LocalLift, local SEO website',
     themeColor: '#2D6A4F',
   },
+  '/local-lift/junk-removal': {
+    title: 'LocalLift for Junk Haulers — AI Lead Response That Books Jobs While You Work',
+    description:
+      'AI SMS lead response for junk removal: reply in under 60 seconds, qualify loads, quote with your pricing rules, and book into Google Calendar—built for haulers who are on the truck.',
+    ogSiteName: 'LocalLift',
+    keywords:
+      'junk removal lead automation, hauler SMS AI, junk hauling quotes, LocalLift, Google Calendar booking, local junk removal marketing, missed text leads',
+    themeColor: '#2D6A4F',
+  },
 };
 
 function normalizePathname(pathname: string): string {
