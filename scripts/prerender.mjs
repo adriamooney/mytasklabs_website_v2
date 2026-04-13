@@ -5,7 +5,10 @@
  * Set `VITE_SITE_URL` at build time for correct canonical/og:url in the bundle.
  * Optionally set `PRERENDER_ORIGIN` (same value) to rewrite preview URLs in saved HTML.
  *
- * Linux (Vercel CI): uses @sparticuz/chromium (no system libnss/libnspr required).
+ * Linux: uses @sparticuz/chromium + playwright-core.
+ * Vercel’s build VM is not AWS Lambda, so @sparticuz/chromium would skip extracting
+ * bundled NSS libs unless we set AWS_LAMBDA_JS_RUNTIME before loading the package
+ * (see helper.js: isRunningInAwsLambdaNode20 + al2023.tar.br).
  * macOS/Windows: uses the `playwright` package — run `npx playwright install chromium` once.
  */
 
@@ -16,6 +19,9 @@ import { fileURLToPath } from 'node:url';
 
 async function launchChromium() {
   if (process.platform === 'linux') {
+    if (process.env.VERCEL === '1' || process.env.PRERENDER_USE_SPARTICUZ_LAMBDA_BUNDLE === '1') {
+      process.env.AWS_LAMBDA_JS_RUNTIME ??= 'nodejs22.x';
+    }
     const { chromium } = await import('playwright-core');
     const sparticuz = (await import('@sparticuz/chromium')).default;
     return chromium.launch({
