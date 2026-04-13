@@ -66,10 +66,13 @@ const ROUTES = [
   '/local-lift/onboarding',
 ];
 
+/** Vercel + cleanUrls: `about.html` is served at `/about` before SPA rewrites. `about/index.html` is unreliable. */
 function outPathForRoute(routePath) {
   if (routePath === '/') return join(dist, 'index.html');
   const clean = routePath.replace(/^\/+/, '');
-  return join(dist, clean, 'index.html');
+  const segments = clean.split('/');
+  const leaf = segments.pop();
+  return join(dist, ...segments, `${leaf}.html`);
 }
 
 function patchPreviewOrigin(html) {
@@ -138,11 +141,13 @@ async function main() {
         await page.waitForFunction(
           () => {
             const m = document.querySelector('meta[property="og:url"]');
-            return m && (m.getAttribute('content') || '').length > 0;
+            if (!m || !(m.getAttribute('content') || '').length) return false;
+            const root = document.getElementById('root');
+            return !!(root && root.innerHTML.trim().length > 200);
           },
-          { timeout: 20000 },
+          { timeout: 30000 },
         );
-        await new Promise((r) => setTimeout(r, 200));
+        await new Promise((r) => setTimeout(r, 300));
 
         let html = await page.content();
         html = patchPreviewOrigin(html);
