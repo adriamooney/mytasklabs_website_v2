@@ -5,14 +5,28 @@
  * Set `VITE_SITE_URL` at build time for correct canonical/og:url in the bundle.
  * Optionally set `PRERENDER_ORIGIN` (same value) to rewrite preview URLs in saved HTML.
  *
- * Requires: `npx playwright install chromium` once per machine/CI.
+ * Linux (Vercel CI): uses @sparticuz/chromium (no system libnss/libnspr required).
+ * macOS/Windows: uses the `playwright` package — run `npx playwright install chromium` once.
  */
 
 import { spawn } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium } from 'playwright';
+
+async function launchChromium() {
+  if (process.platform === 'linux') {
+    const { chromium } = await import('playwright-core');
+    const sparticuz = (await import('@sparticuz/chromium')).default;
+    return chromium.launch({
+      args: sparticuz.args,
+      executablePath: await sparticuz.executablePath(),
+      headless: true,
+    });
+  }
+  const { chromium } = await import('playwright');
+  return chromium.launch({ headless: true });
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
@@ -93,13 +107,7 @@ async function main() {
   try {
     await waitForPreviewOk();
 
-    const browser = await chromium.launch({
-      headless: true,
-      args:
-        process.platform === 'linux'
-          ? ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-          : [],
-    });
+    const browser = await launchChromium();
     const context = await browser.newContext();
     const page = await context.newPage();
 
