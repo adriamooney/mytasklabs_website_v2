@@ -130,6 +130,15 @@ const ROUTES: Record<string, SeoMeta> = {
       'free website design, local business website, contractor website mockup, home services branding, LocalLift, local SEO website',
     themeColor: '#2D6A4F',
   },
+  '/local-lift/onboarding': {
+    title: 'Client Guide — How LocalLift Works | LocalLift',
+    description:
+      'Plain-language onboarding for LocalLift clients: what we need from you, Google Calendar sharing, how SMS booking works, follow-ups, pricing overview, and your dashboard.',
+    ogSiteName: 'LocalLift',
+    keywords:
+      'LocalLift onboarding, junk removal SMS, Google Calendar booking, client dashboard, LocalLift guide',
+    themeColor: '#2D6A4F',
+  },
   '/local-lift/junk-removal': {
     title: 'LocalLift for Junk Haulers — AI Lead Response That Books Jobs While You Work',
     description:

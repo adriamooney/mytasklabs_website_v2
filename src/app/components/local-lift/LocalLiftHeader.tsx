@@ -35,6 +35,7 @@ export function LocalLiftHeader({ variant = 'landing' }: LocalLiftHeaderProps) {
         <a href="#how">How it works</a>
         <a href="#services">What&apos;s included</a>
         <a href="#pricing">Pricing</a>
+        <Link to="/local-lift/onboarding">Client guide</Link>
         <Link
           to="/local-lift/free-design"
           className="ll-header__cta"
