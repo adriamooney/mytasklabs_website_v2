@@ -1,0 +1,160 @@
+/* Minimal /local-lift/demo — uses tokens from local-lift.css */
+
+.local-lift-root .ll-demo-hero {
+  background: var(--cream);
+  text-align: center;
+}
+
+.local-lift-root .ll-demo-hero .section-label {
+  color: var(--green);
+}
+
+.local-lift-root .ll-demo-hero h1 {
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.local-lift-root .ll-demo-hero .section-intro {
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--bark-mid);
+}
+
+.local-lift-root .ll-demo-video-section {
+  background: var(--warm-white);
+}
+
+.local-lift-root .ll-demo-video-frame {
+  margin: 0 auto;
+  max-width: 560px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(45, 26, 18, 0.12);
+  background: var(--bark);
+}
+
+.local-lift-root .ll-demo-video-frame__inner {
+  position: relative;
+}
+
+.local-lift-root .ll-demo-video-frame video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.local-lift-root .ll-demo-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  border-radius: inherit;
+  background: rgba(45, 36, 18, 0.42);
+  transition: background 0.2s ease;
+}
+
+.local-lift-root .ll-demo-play-overlay:hover {
+  background: rgba(45, 36, 18, 0.55);
+}
+
+.local-lift-root .ll-demo-play-overlay:focus-visible {
+  outline: 3px solid var(--green-light);
+  outline-offset: 2px;
+}
+
+.local-lift-root .ll-demo-play-overlay__circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.local-lift-root .ll-demo-play-overlay:hover .ll-demo-play-overlay__circle {
+  transform: scale(1.06);
+}
+
+.local-lift-root .ll-demo-play-overlay__icon {
+  width: 28px;
+  height: 28px;
+  margin-left: 5px;
+}
+
+.local-lift-root .ll-demo-how {
+  background: var(--cream);
+}
+
+.local-lift-root .ll-demo-how h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.local-lift-root .ll-demo-how > .section-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 40px;
+  color: var(--bark-mid);
+}
+
+.local-lift-root .ll-demo-steps {
+  counter-reset: demo-step;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 40px;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.local-lift-root .ll-demo-steps li {
+  position: relative;
+  padding-left: 52px;
+  color: var(--bark-mid);
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+.local-lift-root .ll-demo-steps li::before {
+  content: counter(demo-step);
+  counter-increment: demo-step;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green-pale);
+  color: var(--green);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.local-lift-root .ll-demo-steps strong {
+  color: var(--bark);
+  font-weight: 600;
+}
+
+.local-lift-root .ll-demo-cta-wrap {
+  text-align: center;
+}
+
+.local-lift-root .ll-demo-cta-wrap .btn-primary {
+  display: inline-flex;
+}

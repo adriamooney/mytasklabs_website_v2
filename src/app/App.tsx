@@ -26,6 +26,7 @@ import { LocalLiftPage } from './pages/local-lift';
 import { LocalLiftFreeDesignPage } from './pages/local-lift/LocalLiftFreeDesignPage';
 import { LocalLiftJunkRemovalPage } from './pages/local-lift/LocalLiftJunkRemovalPage';
 import { LocalLiftClientOnboardingPage } from './pages/local-lift/LocalLiftClientOnboardingPage';
+import { LocalLiftDemoPage } from './pages/local-lift/LocalLiftDemoPage';
 
 /**
  * Pathless root layout so SeoHead + trackers always mount for every URL
@@ -97,6 +98,7 @@ const router = createBrowserRouter([
           { path: 'free-design', element: <LocalLiftFreeDesignPage /> },
           { path: 'junk-removal', element: <LocalLiftJunkRemovalPage /> },
           { path: 'onboarding', element: <LocalLiftClientOnboardingPage /> },
+          { path: 'demo', element: <LocalLiftDemoPage /> },
         ],
       },
     ],

@@ -148,6 +148,15 @@ const ROUTES: Record<string, SeoMeta> = {
       'junk removal lead automation, hauler SMS AI, junk hauling quotes, LocalLift, Google Calendar booking, local junk removal marketing, missed text leads',
     themeColor: '#2D6A4F',
   },
+  '/local-lift/demo': {
+    title: 'See LocalLift in Action — Live SMS Demo | LocalLift',
+    description:
+      'Watch a sample text conversation: how LocalLift responds to inbound SMS, qualifies leads, and moves customers toward a booked job—then book a short call to talk about your business.',
+    ogSiteName: 'LocalLift',
+    keywords:
+      'LocalLift demo, AI SMS booking, local business lead response, automated text reply, Google Calendar booking, home services',
+    themeColor: '#2D6A4F',
+  },
 };
 
 function normalizePathname(pathname: string): string {

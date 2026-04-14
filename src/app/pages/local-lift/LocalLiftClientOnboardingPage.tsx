@@ -3,32 +3,6 @@ import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
 import './local-lift.css';
 import './local-lift-onboarding.css';
 
-type PlaceholderKind = 'screenshot' | 'video';
-
-function MediaPlaceholder({
-  kind,
-  title,
-  hint,
-  variant = 'screenshot',
-}: {
-  kind: PlaceholderKind;
-  title: string;
-  hint: string;
-  variant?: 'screenshot' | 'video-wide';
-}) {
-  const isVideo = kind === 'video';
-  return (
-    <figure
-      className={`ll-onboard-placeholder ${isVideo || variant === 'video-wide' ? 'll-onboard-placeholder--video' : 'll-onboard-placeholder--screenshot'}`}
-      aria-label={`Placeholder for ${title}`}
-    >
-      <span className="ll-onboard-placeholder__badge">{isVideo ? 'Video placeholder' : 'Screenshot placeholder'}</span>
-      <figcaption className="ll-onboard-placeholder__title">{title}</figcaption>
-      <p className="ll-onboard-placeholder__hint">{hint}</p>
-    </figure>
-  );
-}
-
 export function LocalLiftClientOnboardingPage() {
   return (
     <div className="local-lift-root">
@@ -40,19 +14,17 @@ export function LocalLiftClientOnboardingPage() {
             <h1>
               Your <em>LocalLift</em> guide
             </h1>
-                       <p className="ll-onboard-lead">
+            <p className="ll-onboard-lead">
               This page explains what we set up for you, what we&apos;ll need from you, and how your customers experience
               text-based booking. Everything here is written for you—not our internal checklists.
             </p>
             <nav className="ll-onboard-toc" aria-label="On this page">
               <a href="#before">Before we start</a>
               <a href="#calendar">Google Calendar</a>
-              <a href="#demos">Videos &amp; screenshots</a>
               <a href="#flow">How texting works</a>
               <a href="#followups">Follow-ups &amp; reminders</a>
               <a href="#pricing">Pricing overview</a>
               <a href="#dashboard">Your dashboard</a>
-              <a href="#no-show">No-shows</a>
               <a href="#tips">Good to know</a>
               <a href="#calls">Missed calls (optional)</a>
             </nav>
@@ -195,35 +167,6 @@ export function LocalLiftClientOnboardingPage() {
             show on your calendar. Nine times out of ten it&apos;s a sharing permission or a typo in the Calendar ID—we fix
             it with you.
           </p>
-
-          <MediaPlaceholder
-            kind="screenshot"
-            title="Google Calendar: sharing & Calendar ID"
-            hint="Replace with step-by-step screenshots: Settings → share with our service account → permission “Make changes to events” → where to find Calendar ID."
-            variant="video-wide"
-          />
-        </section>
-
-        <section id="demos">
-          <p className="section-label">See it in action</p>
-          <h2>
-            Placeholders for <em>your media</em>
-          </h2>
-          <p className="section-intro">
-            Drop in real assets when you&apos;re ready. These blocks keep spacing and layout consistent.
-          </p>
-
-          <MediaPlaceholder
-            kind="video"
-            title="Sample SMS conversation"
-            hint="Embed or replace with a screen recording of a full quote-and-book flow (customer + AI texts)."
-          />
-
-          <MediaPlaceholder
-            kind="video"
-            title="Client dashboard walkthrough"
-            hint="Short tour: Conversations list, opening a thread, Jobs list, marking a no-show if needed."
-          />
         </section>
 
         <section id="flow">
@@ -323,17 +266,6 @@ export function LocalLiftClientOnboardingPage() {
           </p>
         </section>
 
-        <section id="no-show">
-          <p className="section-label">If something goes wrong</p>
-          <h2>
-            <em>No-shows</em>
-          </h2>
-          <p className="section-intro">
-            If you arrive and can&apos;t reach the customer, you can mark the job as a no-show in your dashboard. They get a
-            text explaining you stopped by and offering to reschedule, and you can pick up the conversation when they reply.
-          </p>
-        </section>
-
         <section id="pricing">
           <p className="section-label">Pricing</p>
           <h2>
@@ -427,12 +359,6 @@ export function LocalLiftClientOnboardingPage() {
               Just reach out—we turn updates around quickly.
             </p>
           </div>
-
-          <MediaPlaceholder
-            kind="video"
-            title="Client UI: Conversations & Jobs"
-            hint="Screen recording: logging in, browsing conversations, opening a job, optional no-show action."
-          />
         </section>
 
         <section id="tips">

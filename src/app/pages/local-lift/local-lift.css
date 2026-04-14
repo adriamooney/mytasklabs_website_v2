@@ -26,10 +26,11 @@
     line-height: 1.6;
     min-height: 100vh;
 
-  /* Reset only main column — avoids stripping .ll-footer padding/margins */
-  .ll-main *,
-  .ll-main *::before,
-  .ll-main *::after {
+  /* Universal reset inside main. :where(:not(.ll-onboard-page)) adds zero specificity so
+     this stays (0,2,0) and loses to rules like .ll-main h1 / .hero (see local-lift-onboarding). */
+  .ll-main:where(:not(.ll-onboard-page)) *,
+  .ll-main:where(:not(.ll-onboard-page)) *::before,
+  .ll-main:where(:not(.ll-onboard-page)) *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;

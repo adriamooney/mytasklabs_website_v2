@@ -64,6 +64,7 @@ const ROUTES = [
   '/local-lift/free-design',
   '/local-lift/junk-removal',
   '/local-lift/onboarding',
+  '/local-lift/demo',
 ];
 
 /** Vercel + cleanUrls: `about.html` is served at `/about` before SPA rewrites. `about/index.html` is unreliable. */
