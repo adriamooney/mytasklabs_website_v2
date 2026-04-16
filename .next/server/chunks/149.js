@@ -1,0 +1,1 @@
+"use strict";exports.id=149,exports.ids=[149],exports.modules={9149:(a,b,c)=>{c.r(b),c.d(b,{GoogleAnalyticsTracker:()=>f});var d=c(2015),e=c(4233);function f(){return((0,e.useRouter)().asPath??"/").split("?")[0],(0,d.useRef)(!0),null}}};

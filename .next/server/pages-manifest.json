@@ -1,8 +1,10 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/submit-free-design": "pages/api/submit-free-design.js",
+  "/_error": "pages/_error.js",
   "/api/submit-contact": "pages/api/submit-contact.js",
-  "/[[...slug]]": "pages/[[...slug]].js"
+  "/api/submit-free-design": "pages/api/submit-free-design.js",
+  "/api/submit-plan": "pages/api/submit-plan.js",
+  "/[[...slug]]": "pages/[[...slug]].js",
+  "/404": "pages/404.html"
 }

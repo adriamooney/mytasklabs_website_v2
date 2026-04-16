@@ -1,0 +1,1 @@
+"use strict";exports.id=527,exports.ids=[527],exports.modules={6527:(a,b,c)=>{c.r(b),c.d(b,{MetaPixelTracker:()=>e}),c(2015);var d=c(4233);function e(){return((0,d.useRouter)().asPath??"/").split("?")[0],null}}};
