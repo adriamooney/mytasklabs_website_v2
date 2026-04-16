@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { normalizeResendFrom } from './_lib/resendFrom.js';
+import { normalizeResendFrom } from './_lib/resendFrom';
 
 type FreeDesignBody = {
   businessName?: string;

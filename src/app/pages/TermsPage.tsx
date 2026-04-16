@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function TermsPage() {
   return (
@@ -135,7 +135,7 @@ export function TermsPage() {
             We may use third-party communication providers to facilitate SMS delivery. These providers process message data solely for the purpose of transmitting communications.
           </p>
 
-          <Link to="/" className="text-indigo-600 hover:text-indigo-700 font-medium">
+          <Link href="/" className="text-indigo-600 hover:text-indigo-700 font-medium">
             &larr; Back to home
           </Link>
         </div>

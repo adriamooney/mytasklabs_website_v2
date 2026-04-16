@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { useRouter } from 'next/router';
 
 declare global {
   interface Window {
@@ -9,7 +9,8 @@ declare global {
 
 /** Fires Meta Pixel PageView on every route change (SPA navigation) */
 export function MetaPixelTracker() {
-  const { pathname } = useLocation();
+  const router = useRouter();
+  const pathname = (router.asPath ?? '/').split('?')[0] ?? '/';
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.fbq) {

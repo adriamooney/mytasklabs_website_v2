@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Button } from './ui/button';
 import { ArrowRight } from 'lucide-react';
 
@@ -74,7 +74,7 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </a>
-            <Link to="/process">
+            <Link href="/process">
               <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
                 Learn More
               </Button>

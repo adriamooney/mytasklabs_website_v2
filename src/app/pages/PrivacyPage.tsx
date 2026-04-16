@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function PrivacyPage() {
   return (
@@ -149,7 +149,7 @@ export function PrivacyPage() {
             By using our website or services, you consent to the practices outlined in this Privacy Policy.
           </p>
 
-          <Link to="/" className="text-indigo-600 hover:text-indigo-700 font-medium">
+          <Link href="/" className="text-indigo-600 hover:text-indigo-700 font-medium">
             &larr; Back to home
           </Link>
         </div>

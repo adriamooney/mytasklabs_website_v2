@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Check, Cpu, Layers, MapPin, Sparkles } from 'lucide-react';
 import { InnerPageCTA } from '../components/InnerPageCTA';
 import { TEAM_MEMBERS } from '../components/Team';
@@ -50,7 +50,7 @@ export function AboutPage() {
           <nav className="mb-6 text-sm">
             <ol className="flex flex-wrap items-center gap-2 text-indigo-200">
               <li>
-                <Link to="/" className="hover:text-white transition-colors">
+                <Link href="/" className="hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
@@ -214,7 +214,7 @@ export function AboutPage() {
           </div>
           <div className="text-center">
             <Link
-              to="/process"
+              href="/process"
               className="text-indigo-600 hover:text-indigo-700 font-medium underline-offset-4 hover:underline"
             >
               See our full process →
@@ -240,7 +240,7 @@ export function AboutPage() {
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{title}</h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
-                <Link to={href} className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
+                <Link href={href} className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
                   {linkLabel} →
                 </Link>
               </div>
@@ -266,7 +266,7 @@ export function AboutPage() {
                 cleaners, and other local pros who live on their phones and can&apos;t afford to miss a text.
               </p>
               <Link
-                to="/local-lift"
+                href="/local-lift"
                 className="inline-flex items-center justify-center rounded-lg bg-indigo-600 text-white px-6 py-3 text-sm font-medium hover:bg-indigo-700 transition-colors"
               >
                 Explore LocalLift

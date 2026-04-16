@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router';
+import { useRouter } from 'next/router';
 
 /** Fires Reddit Pixel PageVisit on SPA route changes (initial PageVisit is in index.html). */
 export function RedditPixelTracker() {
-  const { pathname } = useLocation();
+  const router = useRouter();
+  const pathname = (router.asPath ?? '/').split('?')[0] ?? '/';
   const isFirstNavigation = useRef(true);
 
   useEffect(() => {

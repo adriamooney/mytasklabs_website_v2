@@ -5,9 +5,9 @@ import {
   mapToTemplateVariables,
   calculateScores,
   type PlanScores,
-} from './_lib/planRouting.js';
-import { getTemplateConfig, getPrompt } from './_lib/templateConfig.js';
-import { generateAiInsert } from './_lib/claude.js';
+} from './_lib/planRouting';
+import { getTemplateConfig, getPrompt } from './_lib/templateConfig';
+import { generateAiInsert } from './_lib/claude';
 
 /** Build a concise "what we recommended" summary for Monday (under 2,000 chars) */
 function formatPlanSummary(planData: {

@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { IndustryCard } from './IndustryCard';
 import { HomeServiceIcon } from './icons/HomeServiceIcon';
 import { ProfessionalServiceIcon } from './icons/ProfessionalServiceIcon';
@@ -42,7 +42,7 @@ export function Industries() {
           {industries.map((industry) => {
             const { href, ...cardProps } = industry as typeof industry & { href?: string };
             return href ? (
-              <Link key={industry.title} to={href} className="block">
+              <Link key={industry.title} href={href} className="block">
                 <IndustryCard {...cardProps} />
               </Link>
             ) : (

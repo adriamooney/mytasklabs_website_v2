@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Check, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
@@ -54,7 +54,7 @@ export function YourPlanPage() {
           <p className="text-lg text-gray-600 mb-8">
             Your custom plan has been sent to your email. If you don&apos;t see it, check your spam folder.
           </p>
-          <Link to="/custom-plan">
+          <Link href="/custom-plan">
             <Button size="lg">Take the quiz again</Button>
           </Link>
         </div>

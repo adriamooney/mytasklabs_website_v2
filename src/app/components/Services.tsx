@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Search, Zap, Users, BarChart3 } from 'lucide-react';
 
 const services = [
@@ -50,7 +50,7 @@ export function Services() {
             return 'href' in service && service.href ? (
               <Link
                 key={service.title}
-                to={service.href}
+                href={service.href}
                 className="block p-6 rounded-lg border border-gray-200 hover:border-indigo-300 hover:shadow-lg transition-all cursor-pointer"
               >
                 {CardContent}

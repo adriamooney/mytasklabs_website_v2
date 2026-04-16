@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router';
+import { useRouter } from 'next/router';
 
 /** Keep in sync with the measurement ID in index.html (gtag.js snippet). */
 const GA_MEASUREMENT_ID = 'G-RXJ1Y2SN4G';
@@ -12,7 +12,8 @@ declare global {
 
 /** Sends GA4 page views on SPA route changes (initial load is handled by gtag in index.html). */
 export function GoogleAnalyticsTracker() {
-  const { pathname } = useLocation();
+  const router = useRouter();
+  const pathname = (router.asPath ?? '/').split('?')[0] ?? '/';
   const isFirstNavigation = useRef(true);
 
   useEffect(() => {

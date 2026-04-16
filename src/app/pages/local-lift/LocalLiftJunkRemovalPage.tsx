@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { trackLead } from '../../analytics/ctaEvents';
 import './local-lift-junkremoval.css';
 
@@ -10,7 +10,7 @@ export function LocalLiftJunkRemovalPage() {
   return (
     <div className="ll-junk-page">
       <nav>
-        <Link to="/local-lift/junk-removal" className="nav-logo">
+        <Link href="/local-lift/junk-removal" className="nav-logo">
           Local<span>Lift</span>
         </Link>
         <div className="nav-links">
@@ -432,7 +432,7 @@ export function LocalLiftJunkRemovalPage() {
 
       <footer>
         <div>
-          <Link to="/local-lift/junk-removal" className="footer-brand">
+          <Link href="/local-lift/junk-removal" className="footer-brand">
             Local<span>Lift</span>
           </Link>
           <div className="footer-sub">A My Task Labs product · Built for junk removal</div>

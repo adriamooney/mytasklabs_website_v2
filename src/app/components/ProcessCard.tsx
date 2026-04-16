@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 interface ProcessCardProps {
   icon: React.ComponentType;
@@ -26,7 +26,7 @@ export function ProcessCard({ icon: Icon, number, title, description, href }: Pr
 
   if (href) {
     return (
-      <Link to={href} className={className}>
+      <Link href={href} className={className}>
         {content}
       </Link>
     );

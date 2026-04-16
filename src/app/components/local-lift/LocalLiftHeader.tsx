@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { trackLead } from '../../analytics/ctaEvents';
 import './LocalLiftHeader.css';
@@ -46,7 +46,7 @@ function LocalLiftLandingHeader() {
   return (
     <header className={`ll-header ll-header--landing ${mobileNavOpen ? 'll-header--nav-open' : ''}`}>
       <div className="ll-header__brand-row">
-        <Link to="/local-lift" className="ll-header__logo">
+        <Link href="/local-lift" className="ll-header__logo">
           Local<span>Lift</span>
         </Link>
         <button
@@ -70,14 +70,14 @@ function LocalLiftLandingHeader() {
         <a href="#pricing" onClick={closeMobileNav}>
           Pricing
         </a>
-        <Link to="/local-lift/demo" onClick={closeMobileNav}>
+        <Link href="/local-lift/demo" onClick={closeMobileNav}>
           Demo
         </Link>
-        <Link to="/local-lift/onboarding" onClick={closeMobileNav}>
+        <Link href="/local-lift/onboarding" onClick={closeMobileNav}>
           Client guide
         </Link>
         <Link
-          to="/local-lift/free-design"
+          href="/local-lift/free-design"
           className="ll-header__cta"
           onClick={() => {
             closeMobileNav();
@@ -99,10 +99,10 @@ export function LocalLiftHeader({ variant = 'landing' }: LocalLiftHeaderProps) {
   if (variant === 'subpage') {
     return (
       <header className="ll-header ll-header--subpage">
-        <Link to="/local-lift" className="ll-header__logo">
+        <Link href="/local-lift" className="ll-header__logo">
           Local<span>Lift</span>
         </Link>
-        <Link to="/local-lift" className="ll-header__back">
+        <Link href="/local-lift" className="ll-header__back">
           ← Back to LocalLift
         </Link>
       </header>

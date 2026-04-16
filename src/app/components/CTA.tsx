@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Button } from './ui/button';
 import { ArrowRight } from 'lucide-react';
 
@@ -12,7 +12,7 @@ export function CTA() {
         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
           Schedule a free consultation to discover how automation can save you time and increase revenue.
         </p>
-        <Link to="/process">
+        <Link href="/process">
           <Button size="lg" variant="secondary">
             Get Started Today
             <ArrowRight className="ml-2 h-5 w-5" />

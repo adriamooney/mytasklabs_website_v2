@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Users, MessageSquare, CheckSquare, Calendar } from 'lucide-react';
 import { TeamCoordinationIcon } from '../components/icons/TeamCoordinationIcon';
 import { InnerPageCTA } from '../components/InnerPageCTA';
@@ -55,9 +55,9 @@ export function TeamCoordinationPage() {
         <div className="max-w-7xl mx-auto px-6">
           <nav className="mb-6 text-sm">
             <ol className="flex flex-wrap items-center gap-2 text-indigo-200">
-              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
               <li>/</li>
-              <li><Link to="/#services" className="hover:text-white transition-colors">Services</Link></li>
+              <li><Link href="/#services" className="hover:text-white transition-colors">Services</Link></li>
               <li>/</li>
               <li className="text-white">Team Coordination</li>
             </ol>

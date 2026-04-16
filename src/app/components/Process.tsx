@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { ProcessCard } from './ProcessCard';
 import { IdentifyIcon } from './icons/IdentifyIcon';
 import { DesignIcon } from './icons/DesignIcon';
@@ -44,7 +43,7 @@ export function Process() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <ProcessCard key={step.title} number={index + 1} href={step.href} {...step} />
+            <ProcessCard key={step.title} number={index + 1} {...step} />
           ))}
         </div>
       </div>

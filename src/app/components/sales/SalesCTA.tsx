@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { ArrowRight, Mail } from 'lucide-react';
 
 export function SalesCTA() {
@@ -48,7 +48,7 @@ export function SalesCTA() {
               If you want to raise your score and start booking more consistently, we&apos;ll build you a custom plan for your specific business. Answer a few short questions and we&apos;ll send it back to you — no call required.
             </p>
             <Link
-              to="/custom-plan"
+              href="/custom-plan"
               className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 text-white text-lg font-semibold rounded-lg shadow-lg transition-all duration-300 hover:bg-indigo-700 hover:shadow-xl hover:scale-105 group"
             >
               Get Your Custom Plan

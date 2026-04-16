@@ -174,12 +174,14 @@ export function getSeoForPathname(pathname: string): SeoMeta {
 
 /** Canonical and og:url base; prefers VITE_SITE_URL when set. */
 export function getSiteOrigin(): string {
-  if (typeof window === 'undefined') return '';
-  const raw = import.meta.env.VITE_SITE_URL as string | undefined;
+  const raw = process.env.NEXT_PUBLIC_SITE_URL;
   if (raw && /^https?:\/\//i.test(raw.trim())) {
     return raw.replace(/\/+$/, '');
   }
-  return window.location.origin;
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  return '';
 }
 
 export function buildCanonicalUrl(pathname: string): string {

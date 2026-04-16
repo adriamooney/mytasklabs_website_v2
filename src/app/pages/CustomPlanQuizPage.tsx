@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useRouter } from 'next/router';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -17,7 +17,7 @@ export function CustomPlanQuizPage() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const navigate = useNavigate();
+  const router = useRouter();
   const isLastQuestion = step === CUSTOM_PLAN_QUIZ_QUESTIONS.length - 1;
   const isFinalStep = step === CUSTOM_PLAN_QUIZ_QUESTIONS.length;
 
@@ -50,7 +50,7 @@ export function CustomPlanQuizPage() {
     setStatus('sending');
     setErrorMessage('');
 
-    const apiBase = import.meta.env.VITE_API_URL ?? '';
+    const apiBase = process.env.NEXT_PUBLIC_API_URL ?? '';
     const apiUrl = `${apiBase}/api/submit-plan`;
 
     try {
@@ -65,7 +65,7 @@ export function CustomPlanQuizPage() {
         throw new Error(data.error ?? 'Failed to generate plan');
       }
       sessionStorage.setItem('CUSTOM_PLAN_DATA', JSON.stringify(data));
-      navigate('/your-plan');
+      void router.push('/your-plan');
     } catch (err) {
       setStatus('error');
       setErrorMessage(err instanceof Error ? err.message : 'Failed to submit. Please try again.');

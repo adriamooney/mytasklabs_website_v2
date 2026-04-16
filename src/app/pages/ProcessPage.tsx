@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { IdentifyIcon } from '../components/icons/IdentifyIcon';
 import { DesignIcon } from '../components/icons/DesignIcon';
@@ -69,7 +69,7 @@ export function ProcessPage() {
         <div className="max-w-7xl mx-auto px-6">
           <nav className="mb-6 text-sm">
             <ol className="flex flex-wrap items-center gap-2 text-indigo-200">
-              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
               <li>/</li>
               <li className="text-white">Our Process</li>
             </ol>

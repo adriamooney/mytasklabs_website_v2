@@ -2,7 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
@@ -16,8 +15,5 @@
       "includeFiles": "api/_lib/**"
     }
   },
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/index" }
-  ]
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/$1" }]
 }

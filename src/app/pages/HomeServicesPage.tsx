@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { Calendar, MapPin, Wrench, Check } from 'lucide-react';
 import { HomeServiceIcon } from '../components/icons/HomeServiceIcon';
 import { InnerPageCTA } from '../components/InnerPageCTA';
@@ -29,9 +29,9 @@ export function HomeServicesPage() {
         <div className="max-w-7xl mx-auto px-6">
           <nav className="mb-6 text-sm">
             <ol className="flex flex-wrap items-center gap-2 text-indigo-200">
-              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
               <li>/</li>
-              <li><Link to="/#industries" className="hover:text-white transition-colors">Industries</Link></li>
+              <li><Link href="/#industries" className="hover:text-white transition-colors">Industries</Link></li>
               <li>/</li>
               <li className="text-white">Home Services</li>
             </ol>

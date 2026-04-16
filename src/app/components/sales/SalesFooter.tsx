@@ -1,14 +1,14 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function SalesFooter() {
   return (
     <footer className="bg-gray-900 text-gray-400 py-12">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
-          <Link to="/privacy" className="text-sm hover:text-white transition-colors">
+          <Link href="/privacy" className="text-sm hover:text-white transition-colors">
             Privacy Policy
           </Link>
-          <Link to="/terms" className="text-sm hover:text-white transition-colors">
+          <Link href="/terms" className="text-sm hover:text-white transition-colors">
             Terms of Service
           </Link>
         </div>

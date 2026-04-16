@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 import './LocalLiftFooter.css';
 
 type LocalLiftFooterProps = {
@@ -19,7 +19,7 @@ export function LocalLiftFooter({ samePageHash = false }: LocalLiftFooterProps) 
               Local<span>Lift</span>
             </div>
             <div className="ll-footer-ll-sub">
-              <Link to="/">A My Task Labs product</Link>
+              <Link href="/">A My Task Labs product</Link>
             </div>
             <nav className="ll-footer-nav" aria-label="LocalLift page sections">
               <a href={section('how')}>How it works</a>
@@ -30,7 +30,7 @@ export function LocalLiftFooter({ samePageHash = false }: LocalLiftFooterProps) 
           </div>
 
           <div className="ll-footer-col ll-footer-mtl">
-            <Link to="/" className="ll-footer-mtl-logo">
+            <Link href="/" className="ll-footer-mtl-logo">
               <span className="ll-footer-mtl-mark" aria-hidden />
               <span className="ll-footer-mtl-name">My Task Labs</span>
             </Link>
@@ -48,16 +48,16 @@ export function LocalLiftFooter({ samePageHash = false }: LocalLiftFooterProps) 
             <h4 className="ll-footer-col-title">Company</h4>
             <ul className="ll-footer-co-list">
               <li>
-                <Link to="/about">About</Link>
+                <Link href="/about">About</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link href="/contact">Contact</Link>
               </li>
               <li>
-                <Link to="/privacy">Privacy Policy</Link>
+                <Link href="/privacy">Privacy Policy</Link>
               </li>
               <li>
-                <Link to="/terms">Terms of Service</Link>
+                <Link href="/terms">Terms of Service</Link>
               </li>
             </ul>
           </div>

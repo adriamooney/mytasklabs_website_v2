@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { LocalLiftFooter } from '../../components/local-lift/LocalLiftFooter';
 import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
 import './local-lift-free-design.css';
@@ -149,7 +149,7 @@ export function LocalLiftFreeDesignPage() {
     setSubmitError('');
     setIsSubmitting(true);
     const data = collectFormData();
-    const apiBase = import.meta.env.VITE_API_URL ?? '';
+    const apiBase = process.env.NEXT_PUBLIC_API_URL ?? '';
     try {
       const res = await fetch(`${apiBase}/api/submit-free-design`, {
         method: 'POST',

@@ -3,7 +3,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function ContactPage() {
   const [businessName, setBusinessName] = useState('');
@@ -19,7 +19,7 @@ export function ContactPage() {
     setStatus('sending');
     setErrorMessage('');
 
-    const apiBase = import.meta.env.VITE_API_URL ?? '';
+    const apiBase = process.env.NEXT_PUBLIC_API_URL ?? '';
 
     try {
       const base = apiBase.replace(/\/$/, '');
@@ -46,7 +46,7 @@ export function ContactPage() {
       if (!res.ok) {
         const hint =
           res.status === 404 || rawText.trim().startsWith('<')
-            ? ' Contact API not found. Use npx vercel dev (not only npm run dev), or deploy and test on your live site.'
+            ? ' Contact API not found. Make sure the Next server is running (npm run dev) and the /api routes are deployed.'
             : '';
         throw new Error((parsed.error ?? `Request failed (${res.status}).`) + hint);
       }
@@ -54,7 +54,7 @@ export function ContactPage() {
       if (parsed.ok !== true) {
         throw new Error(
           parsed.error ??
-            'Contact API did not respond correctly. If you are on localhost with npm run dev, run npx vercel dev instead, or test on your deployed site.',
+            'Contact API did not respond correctly. If you see a 500, check server environment variables (RESEND_API_KEY, RESEND_FROM, CONTACT_NOTIFY_EMAIL).',
         );
       }
       setStatus('success');
@@ -150,11 +150,11 @@ export function ContactPage() {
                 may apply. Reply STOP to unsubscribe. Message frequency varies. Reply HELP for help. Your mobile
                 information will not be sold or shared with third parties for promotional or marketing purposes.
                 View our{' '}
-                <Link to="/privacy" className="text-indigo-600 hover:text-indigo-700 underline inline">
+                <Link href="/privacy" className="text-indigo-600 hover:text-indigo-700 underline inline">
                   Privacy Policy
                 </Link>{' '}
                 and{' '}
-                <Link to="/terms" className="text-indigo-600 hover:text-indigo-700 underline inline">
+                <Link href="/terms" className="text-indigo-600 hover:text-indigo-700 underline inline">
                   Terms of Service
                 </Link>
                 .

@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import {
@@ -21,13 +22,14 @@ const HOME_NAV_ITEMS = [
 const navLinkClass = 'text-gray-600 hover:text-gray-900';
 
 export function Header() {
-  const location = useLocation();
-  const isHome = location.pathname === '/';
+  const router = useRouter();
+  const pathname = (router.asPath ?? '/').split('?')[0].split('#')[0] || '/';
+  const isHome = pathname === '/';
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-indigo-600 rounded-lg"></div>
           <span className="text-xl font-semibold text-gray-900">My Task Labs</span>
         </Link>
@@ -36,7 +38,7 @@ export function Header() {
             isHome ? (
               <a key={hash} href={`#${hash}`} className={navLinkClass}>{label}</a>
             ) : (
-              <Link key={hash} to={`/#${hash}`} className={navLinkClass}>{label}</Link>
+              <Link key={hash} href={`/#${hash}`} className={navLinkClass}>{label}</Link>
             )
           )}
           <DropdownMenu>
@@ -51,11 +53,11 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="min-w-[10rem]">
               <DropdownMenuItem asChild>
-                <Link to="/local-lift">LocalLift</Link>
+                <Link href="/local-lift">LocalLift</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Link to="/contact" className={navLinkClass}>Contact</Link>
+          <Link href="/contact" className={navLinkClass}>Contact</Link>
           <Button size="sm" asChild>
             <a href={ZCAL_GET_STARTED} target="_blank" rel="noopener noreferrer">
               Get Started

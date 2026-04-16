@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -19,27 +19,27 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/ai-workflow-audit" className="hover:text-white">AI Workflow Audit</Link></li>
-              <li><Link to="/lead-automation" className="hover:text-white">Lead Automation</Link></li>
-              <li><Link to="/team-coordination" className="hover:text-white">Team Coordination</Link></li>
-              <li><Link to="/analytics" className="hover:text-white">Analytics</Link></li>
+              <li><Link href="/ai-workflow-audit" className="hover:text-white">AI Workflow Audit</Link></li>
+              <li><Link href="/lead-automation" className="hover:text-white">Lead Automation</Link></li>
+              <li><Link href="/team-coordination" className="hover:text-white">Team Coordination</Link></li>
+              <li><Link href="/analytics" className="hover:text-white">Analytics</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Industries</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/home-services" className="hover:text-white">Home Services</Link></li>
-              <li><Link to="/professional-services" className="hover:text-white">Professional Services</Link></li>
-              <li><Link to="/operations" className="hover:text-white">Operations</Link></li>
+              <li><Link href="/home-services" className="hover:text-white">Home Services</Link></li>
+              <li><Link href="/professional-services" className="hover:text-white">Professional Services</Link></li>
+              <li><Link href="/operations" className="hover:text-white">Operations</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/about" className="hover:text-white">About</Link></li>
-              <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
-              <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="hover:text-white">Terms of Service</Link></li>
+              <li><Link href="/about" className="hover:text-white">About</Link></li>
+              <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
+              <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-white">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
