@@ -13,6 +13,9 @@ const homepageSchema = {
   '@type': 'ProfessionalService',
   name: 'My Task Labs',
   url: 'https://www.mytasklabs.us',
+  image: 'https://www.mytasklabs.us/images/og-image.jpg',
+  logo: 'https://www.mytasklabs.us/favicon.svg',
+  priceRange: '$249 - $799',
   description:
     'AI automation consulting helping businesses streamline workflows, convert more leads, and scale efficiently through intelligent automation solutions.',
   telephone: '+15034510341',

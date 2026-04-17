@@ -38,6 +38,7 @@ const ROUTES: Record<string, SeoMeta> = {
   '/': {
     title: DEFAULT.title,
     description: DEFAULT.description,
+    ogImage: 'https://www.mytasklabs.us/images/og-image.jpg',
   },
   '/about': {
     title: `About ${BRAND} | Team & How We Work`,
