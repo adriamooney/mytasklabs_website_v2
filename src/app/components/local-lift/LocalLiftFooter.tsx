@@ -64,7 +64,7 @@ export function LocalLiftFooter({ samePageHash = false }: LocalLiftFooterProps) 
         </div>
 
         <div className="ll-footer-bottom">
-          © 2026 My Task Labs. All rights reserved. Business registered at 8 The Green, Suite B, Dover, DE 19901
+          © 2026 My Task Labs. All rights reserved.
         </div>
       </div>
     </footer>

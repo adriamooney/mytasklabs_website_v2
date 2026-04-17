@@ -35,8 +35,8 @@
       "routeKeys": {
         "nxtPslug": "nxtPslug"
       },
-      "dataRouteRegex": "^/_next/data/tispmjH5anu9GG5Aj5lbz(?:/(.+?))?\\.json$",
-      "namedDataRouteRegex": "^/_next/data/tispmjH5anu9GG5Aj5lbz(?:/(?<nxtPslug>.+?))?\\.json$"
+      "dataRouteRegex": "^/_next/data/sSDuwuwbCWgyNJspKcsqi(?:/(.+?))?\\.json$",
+      "namedDataRouteRegex": "^/_next/data/sSDuwuwbCWgyNJspKcsqi(?:/(?<nxtPslug>.+?))?\\.json$"
     }
   ],
   "rsc": {

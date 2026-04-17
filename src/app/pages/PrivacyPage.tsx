@@ -143,7 +143,7 @@ export function PrivacyPage() {
           <p className="text-gray-700 mb-4">If you have any questions about this Privacy Policy or how your data is handled, please contact us:</p>
           <p className="text-gray-700 mb-2"><strong>My Task Labs, LLC</strong></p>
           <p className="text-gray-700 mb-2">Email: contact@mytasklabs.us</p>
-          <p className="text-gray-700 mb-6">Address: 8 The Green, Suite B, Dover, DE 19901</p>
+          <p className="text-gray-700 mb-6">Portland, OR</p>
 
           <p className="text-gray-700 mb-12">
             By using our website or services, you consent to the practices outlined in this Privacy Policy.

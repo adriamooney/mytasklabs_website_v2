@@ -44,7 +44,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-800 pt-8 text-sm text-center">
-          &copy; 2026 My Task Labs. All rights reserved. Business registered at 8 The Green, Suite B, Dover, DE 19901
+          &copy; 2026 My Task Labs. All rights reserved.
         </div>
       </div>
     </footer>

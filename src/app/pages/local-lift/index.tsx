@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SchemaScript from '../../components/SchemaScript';
 import { LocalLiftFooter } from '../../components/local-lift/LocalLiftFooter';
 import { LocalLiftHeader } from '../../components/local-lift/LocalLiftHeader';
 import { trackLead } from '../../analytics/ctaEvents';
@@ -6,9 +7,109 @@ import './local-lift.css';
 
 const LOCAL_LIFT_ZCAL = 'https://zcal.co/adriamooney/15min-local-lift';
 
+const localLiftSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'LocalLift',
+    url: 'https://www.mytasklabs.us/local-lift',
+    description:
+      'LocalLift helps local service businesses get found on Google and AI assistants, automatically respond to leads, and book appointments 24/7.',
+    brand: {
+      '@type': 'Brand',
+      name: 'My Task Labs',
+    },
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'Starter — Lead Response',
+        price: '297.00',
+        priceCurrency: 'USD',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: '297.00',
+          priceCurrency: 'USD',
+          unitCode: 'MON',
+        },
+      },
+      {
+        '@type': 'Offer',
+        name: 'Growth — Full Solo Op Stack',
+        price: '497.00',
+        priceCurrency: 'USD',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: '497.00',
+          priceCurrency: 'USD',
+          unitCode: 'MON',
+        },
+      },
+      {
+        '@type': 'Offer',
+        name: 'Pro — Full Stack',
+        price: '797.00',
+        priceCurrency: 'USD',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: '797.00',
+          priceCurrency: 'USD',
+          unitCode: 'MON',
+        },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is LocalLift?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'LocalLift is a done-for-you service by My Task Labs that builds your website, gets your business found on Google, ChatGPT, Gemini, Siri, and Alexa, and automatically responds to inbound leads via SMS — quoting and booking appointments 24/7.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does LocalLift cost?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'LocalLift plans start at $297/month for Lead Response (automated SMS lead response, quoting, and calendar booking). The Growth plan, Full Solo Op Stack, is $497/month and adds Google Business Profile management, photo quote flow, and more. The Pro plan, Full Stack, is $797/month and adds AI search visibility, review generation, monthly reporting, and priority support.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What local service businesses does LocalLift work for?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'LocalLift is built for home service businesses including junk removal, plumbers, cleaners, HVAC, landscapers, and contractors who need to generate and respond to local leads automatically.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does LocalLift get my business found on ChatGPT?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'LocalLift optimizes your Google Business Profile, submits your business to major data aggregators, and adds structured schema markup to your website — the signals that AI assistants use to recommend local businesses.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need an existing website to use LocalLift?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. LocalLift includes a free custom website design and build. If you already have a site, we can work with it or replace it.',
+        },
+      },
+    ],
+  },
+];
+
 export function LocalLiftPage() {
   return (
     <div className="local-lift-root">
+      <SchemaScript schema={localLiftSchema} />
       <LocalLiftHeader variant="landing" />
       <main className="ll-main">
       <section className="hero">
@@ -136,7 +237,7 @@ export function LocalLiftPage() {
   <div className="services-inner">
     <div className="section-label">What's included</div>
     <h2>Everything you need, <em>nothing you don't.</em></h2>
-    <p className="section-intro">Five services that work together as one system. No managing multiple vendors, no stitching tools together yourself.</p>
+    <p className="section-intro">Four services that work together as one system. No managing multiple vendors, no stitching tools together yourself.</p>
     <div className="services-grid">
       <div className="service-card featured">
         <div className="service-icon">⚡</div>
@@ -170,63 +271,6 @@ export function LocalLiftPage() {
           <span className="service-pill">Ongoing monthly</span>
         </div>
       </div>
-      <div className="service-card">
-        <div className="service-icon">📣</div>
-        <div className="service-body">
-          <h3>Google &amp; Facebook ads management</h3>
-          <p>We run and optimize paid campaigns on Google and Meta — targeting, creative, and landing pages — so you get qualified leads without becoming an ad expert yourself. Included on Full Stack plans with managed spend up to $500/mo.</p>
-          <span className="service-pill">Full Stack plan</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section className="testimonial-section">
-  <div className="testimonial-inner">
-    <div className="section-label">Real results</div>
-    <h2>Businesses like yours, <em>already winning.</em></h2>
-    <p className="section-intro">From junk haulers to cleaners to contractors — local service businesses are booking more jobs with less effort.</p>
-    <div className="testimonial-grid">
-      <div className="testi-card big">
-        <div>
-          <div className="testi-quote">"</div>
-          <div className="testi-text">I was losing leads every single day because I couldn't answer texts while I was hauling. LocalLift fixed that overnight. The AI replies faster than I ever could, quotes them accurately, and I just show up to the job. Best investment I've made for my business.</div>
-        </div>
-        <div className="testi-author">
-          <div className="testi-avatar">DM</div>
-          <div>
-            <div className="testi-name">Dave M.</div>
-            <div className="testi-biz">Denver Haul Away · Junk Removal</div>
-          </div>
-        </div>
-      </div>
-      <div className="testi-card">
-        <div className="testi-stars">★★★★★</div>
-        <div className="testi-text">"Within two weeks we were showing up when people asked ChatGPT for junk removal in our area. Never thought AI search was something we needed to worry about."</div>
-        <div className="testi-author">
-          <div className="testi-avatar">SL</div>
-          <div>
-            <div className="testi-name">Sarah L.</div>
-            <div className="testi-biz">Clear It Out · Junk Removal</div>
-          </div>
-        </div>
-      </div>
-      <div className="stat-card">
-        <div className="big-num">3× </div>
-        <div className="stat-desc">more booked appointments in the first 30 days for the average LocalLift client</div>
-      </div>
-      <div className="testi-card">
-        <div className="testi-stars">★★★★★</div>
-        <div className="testi-text">"The free website design was what got me in the door. But the automated booking system is what made me stay. It's like having a full-time receptionist."</div>
-        <div className="testi-author">
-          <div className="testi-avatar">RK</div>
-          <div>
-            <div className="testi-name">Ray K.</div>
-            <div className="testi-biz">Quick Cleanout Co. · Junk Removal</div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -234,100 +278,124 @@ export function LocalLiftPage() {
 <section className="pricing" id="pricing">
   <div className="pricing-inner">
     <div className="section-label">Simple pricing</div>
-    <h2>One monthly fee. <em>Everything included.</em></h2>
-    <p className="section-intro">No setup fees. No long contracts. Cancel anytime. The free website design is yours regardless of which plan you choose.</p>
+    <h2>
+      Pick your plan. <em>We handle the rest.</em>
+    </h2>
+    <p className="section-intro">
+      Every plan is set up and configured for you. No tech knowledge needed — we onboard you personally and get your system live within 48 hours.
+    </p>
     <div className="pricing-grid">
       <div className="price-card">
         <div className="price-tier">Starter</div>
-        <div className="price-name">Visibility</div>
-        <div className="price-desc">Get found everywhere customers search</div>
-        <div className="price-amount"><sup>$</sup>249<span>/mo</span></div>
-        <div className="price-divider"></div>
+        <div className="price-name">Lead Response</div>
+        <div className="price-desc">
+          Automated lead response only — perfect if you already have a site and just need to stop missing jobs.
+        </div>
+        <div className="price-amount">
+          <sup>$</sup>297<span>/mo</span>
+        </div>
+        <div className="price-divider" />
         <ul className="price-features">
-          <li>Professional website (free design included)</li>
-          <li>Website hosting & maintenance</li>
-          <li>Google Business Profile management</li>
-          <li>AI search visibility (ChatGPT, Gemini, Siri)</li>
-          <li>Monthly performance report</li>
+          <li>AI text response within 60 seconds</li>
+          <li>Lead qualification flow</li>
+          <li>Custom quoting settings</li>
+          <li>Google Calendar booking integration</li>
+          <li>Choose: instant book or call-back flow</li>
+          <li>Personal onboarding &amp; setup</li>
         </ul>
         <a
           href={LOCAL_LIFT_ZCAL}
           className="price-outline-btn"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackLead()}
         >
-          Get started
+          Book a setup call
         </a>
       </div>
+
       <div className="price-card featured">
         <div className="popular-badge">Most popular</div>
         <div className="price-tier">Growth</div>
-        <div className="price-name">Visibility + Automation</div>
-        <div className="price-desc">Get found and never miss a lead</div>
-        <div className="price-amount" style={{ color: "var(--cream)" }}><sup>$</sup>399<span>/mo</span></div>
-        <div className="price-divider"></div>
+        <div className="price-name">Full Solo Op Stack</div>
+        <div className="price-desc">
+          Everything a solo hauler needs to get found, look legit, and never miss a lead.
+        </div>
+        <div className="price-amount">
+          <sup>$</sup>497<span>/mo</span>
+        </div>
+        <div className="price-divider" />
         <ul className="price-features">
-          <li>Everything in Visibility</li>
-          <li>AI lead response system</li>
-          <li>Automated quoting & booking</li>
-          <li>Google Calendar integration</li>
-          <li>SMS conversation management</li>
-          <li>Lead follow-up sequences</li>
+          <li>Everything in Lead Response</li>
+          <li>Google Business Profile management</li>
+          <li>Photo quote flow via SMS</li>
+          <li>GBP posts, review responses &amp; citations</li>
+          <li>Monthly performance summary</li>
         </ul>
         <a
           href={LOCAL_LIFT_ZCAL}
           className="price-btn"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackLead()}
         >
-          Get started
+          Book a setup call
         </a>
       </div>
+
       <div className="price-card">
         <div className="price-tier">Pro</div>
         <div className="price-name">Full Stack</div>
-        <div className="price-desc">The complete local growth system</div>
-        <div className="price-amount"><sup>$</sup>799<span>/mo</span></div>
-        <div className="price-divider"></div>
+        <div className="price-desc">
+          Maximum visibility and automation — for haulers ready to grow fast and dominate their market.
+        </div>
+        <div className="price-amount">
+          <sup>$</sup>797<span>/mo</span>
+        </div>
+        <div className="price-divider" />
         <ul className="price-features">
           <li>Everything in Growth</li>
-          <li>Google & Facebook Ads management</li>
-          <li>Includes up to $500/mo in managed ad spend</li>
-          <li>Ad creative & copywriting</li>
-          <li>Landing page optimization</li>
-          <li>Dedicated account manager</li>
-          <li>Priority support</li>
+          <li>AI search ranking (ChatGPT, Gemini, Siri)</li>
+          <li>Review generation system</li>
+          <li>Monthly reporting &amp; insights</li>
+          <li>Priority support &amp; account manager</li>
         </ul>
         <a
           href={LOCAL_LIFT_ZCAL}
           className="price-outline-btn"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackLead()}
         >
-          Get started
+          Book a setup call
         </a>
       </div>
     </div>
-    <div className="pricing-custom-row">
-      <div className="pricing-custom-row-text">
-        <h3 className="pricing-custom-title">Build your own custom plan</h3>
-        <p className="pricing-custom-desc">
-          Pick only the tools you need — mix and match services, skip what you don&apos;t, and keep the rest simple. We&apos;ll map the right setup with you on a quick call.
+
+    <div className="custom-plan-card">
+      <div className="custom-plan-icon">🛠️</div>
+      <div className="custom-plan-body">
+        <h3>Need something custom?</h3>
+        <p>
+          Running multiple trucks, a team, or a franchise? We can build a plan around your specific operation —
+          custom quoting logic, multi-user calendars, white-label options, and more. Let&apos;s talk about what you
+          need.
         </p>
       </div>
       <a
         href={LOCAL_LIFT_ZCAL}
-        className="price-btn pricing-custom-cta"
+        className="custom-plan-cta"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackLead()}
       >
-        Book a call
-        <span className="pricing-custom-cta-arrow" aria-hidden>
-          →
-        </span>
+        Book a custom call →
       </a>
     </div>
-    <p style={{ textAlign: "center", marginTop: 28, fontSize: 13, color: "var(--bark-light)" }}>Full Stack includes up to $500/mo in managed ad spend. Additional spend managed at 15%. Ad spend billed directly to client.</p>
+
+    <p className="pricing-footnote">
+      No setup fees · No long contracts · Cancel anytime · Personal onboarding included with every plan
+    </p>
   </div>
 </section>
 

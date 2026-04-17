@@ -279,8 +279,7 @@ export function AboutPage() {
       <section className="py-16 bg-white border-t border-gray-200">
         <div className="max-w-3xl mx-auto px-6 text-center text-sm text-gray-600">
           <p>
-            My Task Labs, LLC is registered at 8 The Green, Suite B, Dover, DE 19901. Day-to-day operations are run from
-            Portland, OR. Questions?{' '}
+            My Task Labs, LLC operates from Portland, OR. Questions?{' '}
             <a href="mailto:contact@mytasklabs.us" className="text-indigo-600 hover:text-indigo-700">
               contact@mytasklabs.us
             </a>{' '}

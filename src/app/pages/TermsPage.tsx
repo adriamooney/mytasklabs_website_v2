@@ -91,7 +91,7 @@ export function TermsPage() {
           <p className="text-gray-700 mb-4">If you have any questions or concerns about these Terms, please contact us:</p>
           <p className="text-gray-700 mb-2"><strong>My Task Labs, LLC</strong></p>
           <p className="text-gray-700 mb-2">Email: contact@mytasklabs.us</p>
-          <p className="text-gray-700 mb-6">Address: 8 The Green, Suite B, Dover DE 19901</p>
+          <p className="text-gray-700 mb-6">Portland, OR</p>
 
           <h2 className="text-xl font-semibold text-gray-900 mt-10 mb-4">14. SMS Messaging Terms</h2>
           <p className="text-gray-700 mb-6">
