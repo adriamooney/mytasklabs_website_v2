@@ -6,6 +6,7 @@ import { Industries } from '../components/Industries';
 import { Differentiation } from '../components/Differentiation';
 import { Team } from '../components/Team';
 import { CTA } from '../components/CTA';
+import { ToolsWeWorkWith } from '../components/ToolsWeWorkWith';
 import { AnimatedSection } from '../components/AnimatedSection';
 
 const homepageSchema = {
@@ -72,6 +73,7 @@ export function HomePage() {
       <SchemaScript schema={homepageSchema} />
       <AnimatedSection><Hero /></AnimatedSection>
       <AnimatedSection><Services /></AnimatedSection>
+      <AnimatedSection><ToolsWeWorkWith /></AnimatedSection>
       <AnimatedSection><Process /></AnimatedSection>
       <AnimatedSection><Industries /></AnimatedSection>
       <AnimatedSection><Differentiation /></AnimatedSection>

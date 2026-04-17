@@ -1,1 +1,0 @@
-"use strict";exports.id=78,exports.ids=[78],exports.modules={8078:(a,b,c)=>{c.r(b),c.d(b,{RedditPixelTracker:()=>f});var d=c(2015),e=c(4233);function f(){return((0,e.useRouter)().asPath??"/").split("?")[0],(0,d.useRef)(!0),null}}};

@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[749],{9099:(e,t,u)=>{e.exports=u(6763)},9749:(e,t,u)=>{"use strict";u.r(t),u.d(t,{MetaPixelTracker:()=>a});var l=u(4232),r=u(9099);function a(){var e,t;let u=null!=(t=(null!=(e=(0,r.useRouter)().asPath)?e:"/").split("?")[0])?t:"/";return(0,l.useEffect)(()=>{window.fbq&&window.fbq("track","PageView")},[u]),null}}}]);
