@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Script from 'next/script';
 import { trackLead } from '../../analytics/ctaEvents';
 import './local-lift-junkremoval.css';
 
@@ -6,9 +7,27 @@ const DEMO_SMS = 'sms:5039743358';
 const DEMO_PHONE_DISPLAY = '503-974-3358';
 const BOOKING_URL = 'https://zcal.co/adriamooney/15min-local-lift';
 
+/** Junk-removal page widget. Loaded client-side after hydration. */
+const JUNK_REMOVAL_WIDGET = {
+  src: 'https://api.mytasklabs.us/widget/widget.js',
+  token:
+    'eyJhbGxvd2VkX29yaWdpbnMiOlsiaHR0cHM6Ly9teXRhc2tsYWJzLnVzIl0sImV4cCI6MTgwODM0MTUwOCwiaWF0IjoxNzc2ODA1NTA4LCJ0ZW5hbnQiOiJ0ZWxueXhfdGVzdF9qdW5rX3JlbW92YWwiLCJ0b2tlbl9pZCI6InRva18wM2MzOGZmNjFhZjMifQ.glzE_yhx2wbkoe_zLRryPRJtN71dI71aHQj5ljD-t_M',
+  apiBase: 'https://api.mytasklabs.us',
+  theme: '#2563eb',
+  position: 'bottom-right' as const,
+};
+
 export function LocalLiftJunkRemovalPage() {
   return (
     <div className="ll-junk-page">
+      <Script
+        src={JUNK_REMOVAL_WIDGET.src}
+        strategy="afterInteractive"
+        data-token={JUNK_REMOVAL_WIDGET.token}
+        data-theme={JUNK_REMOVAL_WIDGET.theme}
+        data-position={JUNK_REMOVAL_WIDGET.position}
+        data-api-base={JUNK_REMOVAL_WIDGET.apiBase}
+      />
       <nav>
         <Link href="/local-lift/junk-removal" className="nav-logo">
           Local<span>Lift</span>
