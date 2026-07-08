@@ -11,7 +11,7 @@ const BOOKING_URL = 'https://zcal.co/adriamooney/15min-local-lift';
 const JUNK_REMOVAL_WIDGET = {
   src: 'https://api.mytasklabs.us/widget/widget.js',
   token:
-    'eyJhbGxvd2VkX29yaWdpbnMiOlsiaHR0cHM6Ly9teXRhc2tsYWJzLnVzIl0sImV4cCI6MTgwODM0MTUwOCwiaWF0IjoxNzc2ODA1NTA4LCJ0ZW5hbnQiOiJ0ZWxueXhfdGVzdF9qdW5rX3JlbW92YWwiLCJ0b2tlbl9pZCI6InRva18wM2MzOGZmNjFhZjMifQ.glzE_yhx2wbkoe_zLRryPRJtN71dI71aHQj5ljD-t_M',
+    'eyJhbGxvd2VkX29yaWdpbnMiOlsiaHR0cHM6Ly9teXRhc2tsYWJzLnVzIiwiaHR0cHM6Ly93d3cubXl0YXNrbGFicy51cyJdLCJleHAiOjE4MTUwNzg0NjcsImlhdCI6MTc4MzU0MjQ2NywidGVuYW50IjoidGVsbnl4X3Rlc3RfanVua19yZW1vdmFsIiwidG9rZW5faWQiOiJ0b2tfMTUxMWZiYjczYWJmIn0.smaSH-MkuQFegELqDOu66zsYZq1Sx3dZTwrrp9Xv0WI',
   apiBase: 'https://api.mytasklabs.us',
   theme: '#2563eb',
   position: 'bottom-right' as const,
